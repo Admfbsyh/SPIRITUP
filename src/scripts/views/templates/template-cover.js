@@ -24,6 +24,53 @@ const homelogin=() =>`
         </div>
         </div>
     </div>
+    <div class="about_tim">
+     <h1> About Team </h1>
+     <p>kamu nanya, kamu nanya siapa yang buat? nih aku kasih tau ya</p>
+        <div class="container">
+            <div class="box">
+                <div class="imgbox">
+                    <img src="../acc-scedule.png"/>
+                </div>
+                <div class="content">
+                <div>
+                    <h2>Muhammad Adam Febriansyah<h2>
+                </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbox">
+                    <img src="../acc-scedule.png"/>
+                </div>
+                <div class="content">
+                <div>
+                    <h2>Sri Rahayu Indiani<h2>
+                </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbox">
+                    <img src="../acc-scedule.png"/>
+                </div>
+                <div class="content">
+                <div>
+                    <h2>Dimas Dharu Ramadhan<h2>
+                </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbox">
+                    <img src="../acc-scedule.png"/>
+                </div>
+                <div class="content">
+                <div>
+                    <h2>Candra Kusuma Muhammad B <h2>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 `;
 
 export{homelogin};
