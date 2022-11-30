@@ -1,0 +1,381 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: #14213d;
+  color: #ffffff;
+  height: 90px;
+}
+
+li {
+  list-style: none;
+}
+
+.header-nav li a .logo {
+  align-items: center;
+}
+
+.header-nav a {
+  justify-content: center;
+}
+
+.header-nav li {
+  float: right;
+  padding: 35px 20px;
+  justify-content: center;
+}
+
+.header-nav li:hover {
+  background: #929195;
+  transition: all ease-in 0.2s;
+}
+
+.header-nav img {
+  width: 16px;
+}
+
+.header-nav .log-out {
+  display: flex;
+  text-align: left;
+  float: right;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background-color: #fca311;
+  width: 260px;
+  /* padding: 24px; */
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  transition: all ease-in 0.2s;
+}
+
+.sidebar.hide {
+  width: 62px;
+  transition: all ease-out 0.2s;
+}
+.main-content {
+  background-color: #eeeeee;
+  flex-grow: 1;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+
+.sidebar .main .list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+  padding: 15px 10px;
+  border-radius: 8px;
+  /* width: 212px; */
+  box-sizing: border-box;
+  transition: all ease-in 0.2s;
+  background: #14213d;
+  text-align: center;
+}
+
+.sidebar .main .list-item:hover {
+  background: #8d72e1;
+  transition: all ease-in 0.2s;
+}
+
+.sidebar .main .list-item .icon {
+  margin-right: 12px;
+  align-items: center;
+}
+
+.sidebar .main .list-item img {
+  width: 30px;
+}
+
+.sidebar .main .list-item .description {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
+  color: #ffffff;
+  float: right;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.sidebar.hide .main .list-item .description {
+  display: none;
+}
+
+.sidebar .main .list-item .email {
+  display: flex;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 16px;
+  text-align: left;
+  color: #ffffff;
+  float: right;
+  padding-left: 10px;
+}
+.sidebar.hide .main .list-item .email {
+  display: none;
+}
+
+/* Hamburger menu sidebar */
+
+#menu-button {
+  width: 32px;
+  position: absolute;
+}
+
+#menu-label {
+  position: relative;
+  display: block;
+  height: 20px;
+  cursor: pointer;
+}
+
+#menu-checkbox {
+  display: none;
+}
+
+#hamburger,
+#menu-label::after,
+#menu-label::before {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #14213d;
+}
+
+#menu-label::after,
+#menu-label::before {
+  content: "";
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) left;
+}
+
+#menu-label::before {
+  top: 0;
+}
+
+#menu-label::after {
+  top: 8px;
+}
+
+#hamburger {
+  top: 16px;
+}
+
+#hamburger::before {
+  content: "MENU";
+  position: absolute;
+  top: 5px;
+  right: 0;
+  left: 0;
+  color: #111827;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#menu-checkbox:checked + #menu-label::before {
+  left: -39px;
+}
+#menu-checkbox:checked + #menu-label::after {
+  left: 39px;
+}
+#menu-checkbox:checked + #menu-label #hamburger::before {
+  animation: moveUpThenDown 0.8s ease 0.2s forwards,
+    shakeUp 0.8s ease 0.2s forwards, shakeDown 0.8s ease 0.2s forwards;
+}
+
+@keyframes moveUpThenDown {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -27px;
+  }
+  100% {
+    top: -14px;
+  }
+}
+
+@keyframes shakeUp {
+  0% {
+    transform: rotateZ(0);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  50% {
+    transform: rotateZ(0);
+  }
+  70% {
+    transform: rotateZ(10deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+@keyframes shakeDown {
+  0% {
+    transform: rotateZ(0);
+  }
+  80% {
+    transform: rotateZ(3deg);
+  }
+  90% {
+    transform: rotateZ(-3deg);
+  }
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+main {
+  width: 80%;
+  flex-direction: row;
+}
+
+.main-content {
+  background-color: #ffffff;
+  flex-grow: 1;
+}
+
+.input_section {
+  width: 95%;
+  height: 50%;
+  float: left;
+  margin: 35px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.input_section > h2 {
+  text-align: center;
+  color: #14213d;
+}
+
+.input_section > form > .input {
+  margin: 8px 0;
+}
+
+.input_section > form > button {
+  background-color: #14213d;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.input_section > form > button > span {
+  font-weight: bold;
+}
+
+.input_section > form > .input > input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.input_section > form > .input > label {
+  color: #14213d;
+  font-weight: bold;
+}
+
+.input_section > form > .input_inline {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+}
+
+.input_section > form > .input_inline > label {
+  color: #14213d;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.createTask {
+  width: 95%;
+  height: 50%;
+  float: left;
+  margin-left: 35px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.createTask > h2 {
+  color: #14213d;
+}
+
+.createTask > .task_list {
+  padding: 16px;
+}
+
+.createTask > .task_list > .task_item {
+  padding: 8px 16px 16px 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.createTask > .task_list > .task_item > h3,
+p {
+  margin: 8px 0;
+}
+
+.createTask > .task_list > .task_item > .action > button {
+  border: 0;
+  padding: 5px;
+  margin: 0 5px 0 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.createTask > .task_list > .task_item > .action > .green {
+  background-color: darkgreen;
+  color: white;
+}
+
+.createTask > .task_list > .task_item > .action > .red {
+  background-color: darkred;
+  color: white;
+}
+
+.sidebar-detail {
+  width: 25%;
+  height: 650px;
+  margin: 35px 20px 50px 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  float: right;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 10px;
+}
