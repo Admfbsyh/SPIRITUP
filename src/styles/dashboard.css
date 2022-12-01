@@ -344,7 +344,7 @@ main {
   margin: 10px 0;
 }
 
-.createTask > .task_list > .task_item > h3,
+.createTask > .task_list > .task_item > h2, p
 p {
   margin: 8px 0;
 }
@@ -355,6 +355,58 @@ p {
   margin: 0 5px 0 0;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.undo-button {
+  width: 40px;
+  height: 40px;
+
+  background: url('../src/public/undo-ouline.svg');
+  background-size: contain;
+  margin-left: auto;
+  cursor: pointer;
+  border: none;
+}
+
+.undo-button:hover {
+  background: url('../src/public/undo-ouline.svg');
+  background-size: contain;
+}
+
+.trash-button {
+  width: 40px;
+  height: 40px;
+
+  background: url('../src/public/trash-outline.svg');
+  background-size: contain;
+  margin-left: 16px;
+  cursor: pointer;
+  border: none;
+}
+
+.trash-button:hover {
+  background: url('../src/public/trash-fill.svg');
+  background-size: contain;
+}
+
+.check-button {
+  width: 40px;
+  height: 40px;
+
+  background: url('../src/public/check-outline.svg');
+  background-size: contain;
+  margin-left: auto;
+  cursor: pointer;
+  border: none;
+}
+
+.check-button:hover {
+  background: url('../src/public/check-solid.svg');
+  background-size: contain;
+}
+
+.check-button:focus, .trash-button {
+  outline: none;
 }
 
 .createTask > .task_list > .task_item > .action > .green {
