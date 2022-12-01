@@ -230,6 +230,10 @@ body {
   color:white;
 }
 
+.login_box a{
+  margin: auto 0 auto 50px;
+}
+
 .signup_header{
   text-align: center;
   margin-top: 50px;

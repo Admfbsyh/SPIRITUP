@@ -1,12 +1,14 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, set, ref, update } from "firebase/database";
-import firebaseConfig from "../../data/config";
-import Swal from 'sweetalert2'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+    getDatabase, set, ref,
+} from 'firebase/database';
+import Swal from 'sweetalert2';
+import firebaseConfig from '../../data/config';
 
-const signup={
-    async render(){
-    return `
+const signup = {
+    async render() {
+        return `
         <div class="signup_header">SPIRITUP</div>
         <div class="signup_box">
         <h1>Sign In</h1>
@@ -22,77 +24,70 @@ const signup={
         </div>
     `;
     },
-    async afterRender(){
+    async afterRender() {
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
-        let signupButton = document.getElementById("signup");
-    
-        signupButton.addEventListener("click", (e) => {
-            let name = document.getElementById("name").value;
-            let emailSignup = document.getElementById("signupEmail").value;
-            let passwordSignup = document.getElementById("signupPassword").value;
-            let signupPasswordConfirm = document.getElementById("signupPasswordConfirm").value;
+        const signupButton = document.getElementById('signup');
 
-            if(passwordSignup != signupPasswordConfirm)  
-            {   
+        signupButton.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const emailSignup = document.getElementById('signupEmail').value;
+            const passwordSignup = document.getElementById('signupPassword').value;
+            const signupPasswordConfirm = document.getElementById('signupPasswordConfirm').value;
+
+            if (passwordSignup !== signupPasswordConfirm) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: "Passwords did not match",
-                  }) 
-            } else {  
+                    text: 'Passwords did not match',
+                });
+            } else {
                 createUserWithEmailAndPassword(auth, emailSignup, passwordSignup)
-              .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-          
-                set(ref(database, "users/" + user.uid), {
-                  name: name,
-                  email: emailSignup,
-                  password: passwordSignup
-                })
-                  .then(() => {
-                    Swal.fire({
-                        title: 'Sign Up SUccess',
-                        text: "Akun berhasil dibuat",
-                        icon: 'success',
-                        showCancelButton: false,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'OK'
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.replace("#/login")
-                        }
-                      }
-                      )
-                      
+                    .then((userCredential) => {
+                        // Signed in
+                        const { user } = userCredential;
+
+                        set(ref(database, `users/${user.uid}`), {
+                            name,
+                            email: emailSignup,
+                        })
+                            .then(() => {
+                                Swal.fire({
+                                    title: 'Sign Up Success',
+                                    text: 'Akun berhasil dibuat',
+                                    icon: 'success',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'OK',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.replace('#/login');
+                                    }
+                                });
+                            })
+                            .catch((error) => {
+                                // the write failed
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: error,
+                                });
+                            });
                     })
-                  .catch((error) => {
-                    //the write failed
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: error,
-                      })
-                  });
-              })
-              .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: errorMessage,
-                  })
-              });  
-            }  
-          
-            
-          });
+                    .catch((error) => {
+                        const errorMessage = error.message;
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: errorMessage,
+                        });
+                    });
+            }
+        });
     },
-    
+
 };
 
-export default signup
+export default signup;

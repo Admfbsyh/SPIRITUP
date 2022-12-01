@@ -1,4 +1,4 @@
-const homelogin=() =>`
+const homelogin = () => `
     <div class="hero">
         <h1>Manage your Day Now !</h1>
         <p>Lorem Ipsum doLimit divadmla adakad adanknad adnaknadk </p>
@@ -30,7 +30,7 @@ const homelogin=() =>`
         <div class="container">
             <div class="box">
                 <div class="imgbox">
-                    <img src="../acc-scedule.png"/>
+                    <img src="../adam.jpeg"/>
                 </div>
                 <div class="content">
                 <div>
@@ -40,7 +40,7 @@ const homelogin=() =>`
             </div>
             <div class="box">
                 <div class="imgbox">
-                    <img src="../acc-scedule.png"/>
+                    <img src="../indi.jpg"/>
                 </div>
                 <div class="content">
                 <div>
@@ -50,7 +50,7 @@ const homelogin=() =>`
             </div>
             <div class="box">
                 <div class="imgbox">
-                    <img src="../acc-scedule.png"/>
+                    <img src="../dharu.jpg"/>
                 </div>
                 <div class="content">
                 <div>
@@ -60,7 +60,7 @@ const homelogin=() =>`
             </div>
             <div class="box">
                 <div class="imgbox">
-                    <img src="../acc-scedule.png"/>
+                    <img src="../candra.jpg"/>
                 </div>
                 <div class="content">
                 <div>
@@ -73,4 +73,4 @@ const homelogin=() =>`
 </div>
 `;
 
-export{homelogin};
+export { homelogin };
