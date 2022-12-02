@@ -81,12 +81,29 @@ li {
   align-items: center;
   margin: 5px;
   padding: 15px 10px;
-  border-radius: 8px;
+  border-radius: 25px;
   /* width: 212px; */
   box-sizing: border-box;
   transition: all ease-in 0.2s;
   background: #14213d;
   text-align: center;
+}
+
+.sidebar .main .list-item-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+  padding-bottom: 15px;
+  border-radius: 25px;
+  /* width: 212px; */
+  box-sizing: border-box;
+  transition: all ease-in 0.2s;
+  background: #14213d;
+  text-align: center;
+  transform: translate(-1%, -1%);
+  border: 1px solid grey;
+  overflow: hidden;
 }
 
 .sidebar .main .list-item:hover {
@@ -97,6 +114,53 @@ li {
 .sidebar .main .list-item .icon {
   margin-right: 12px;
   align-items: center;
+  padding-left: 5px;
+}
+
+.sidebar .main .list-item-user .user {
+  margin-right: 12px;
+  margin-top: 15px;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.sidebar .main .list-item-user:hover {
+  background: #8d72e1;
+  transition: all ease-in 0.2s;
+}
+
+#photo {
+  height: 30%;
+  width: 30%;
+  float: left;
+  padding-left: 20px;
+}
+
+#file {
+  display: none;
+}
+
+#uploadBtn {
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: wheat;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  display: none;
+}
+
+.sidebar .main .list-item-user img {
+  height: 20%;
+  width: 20%;
+  border-radius: 5%;
 }
 
 .sidebar .main .list-item img {
@@ -111,14 +175,14 @@ li {
   color: #ffffff;
   float: right;
   padding-left: 10px;
-  padding-top: 10px;
+  padding-top: 2px;
 }
 
 .sidebar.hide .main .list-item .description {
   display: none;
 }
 
-.sidebar .main .list-item .email {
+.sidebar .main .list-item-user .email {
   display: flex;
   font-style: normal;
   font-weight: 400;
@@ -126,10 +190,11 @@ li {
   line-height: 16px;
   text-align: left;
   color: #ffffff;
-  float: right;
-  padding-left: 10px;
+  margin: 15px;
+  padding-top: 15px;
 }
-.sidebar.hide .main .list-item .email {
+
+.sidebar.hide .main .list-item-user .email {
   display: none;
 }
 
@@ -256,16 +321,23 @@ main {
   flex-grow: 1;
 }
 
+.main-content h1 {
+  font-size: 50px;
+  text-align: right;
+  padding-top: 20px;
+}
+
 .input_section {
   width: 95%;
   height: 50%;
   float: left;
-  margin: 35px;
+  margin-top: 22px;
+  margin-left: 35px;
   display: flex;
   flex-direction: column;
   padding: 16px;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 .input_section > h2 {
@@ -326,7 +398,7 @@ main {
   flex-direction: column;
   padding: 16px;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 .createTask > h2 {
@@ -344,8 +416,8 @@ main {
   margin: 10px 0;
 }
 
-.createTask > .task_list > .task_item > h2, p
-p {
+.createTask > .task_list > .task_item > h2,
+p p {
   margin: 8px 0;
 }
 
@@ -360,52 +432,56 @@ p {
 .undo-button {
   width: 40px;
   height: 40px;
+  float: right;
 
-  background: url('../src/public/undo-ouline.svg');
+  background: url("../Asset/img/undo-ouline.svg");
   background-size: contain;
-  margin-left: auto;
+  margin-left: 25px;
   cursor: pointer;
   border: none;
 }
 
 .undo-button:hover {
-  background: url('../src/public/undo-ouline.svg');
+  background: url("../Asset/img/undo-ouline.svg");
   background-size: contain;
 }
 
 .trash-button {
   width: 40px;
   height: 40px;
+  float: right;
 
-  background: url('../src/public/trash-outline.svg');
+  background: url("../Asset/img/trash-outline.svg");
   background-size: contain;
-  margin-left: 16px;
+  margin-left: 25px;
   cursor: pointer;
   border: none;
 }
 
 .trash-button:hover {
-  background: url('../src/public/trash-fill.svg');
+  background: url("../Asset/img/trash-fill.svg");
   background-size: contain;
 }
 
 .check-button {
   width: 40px;
   height: 40px;
+  float: right;
 
-  background: url('../src/public/check-outline.svg');
+  background: url("../Asset/img/check-outline.svg");
   background-size: contain;
-  margin-left: auto;
+  margin-left: 25px;
   cursor: pointer;
   border: none;
 }
 
 .check-button:hover {
-  background: url('../src/public/check-solid.svg');
+  background: url("../Asset/img/check-solid.svg");
   background-size: contain;
 }
 
-.check-button:focus, .trash-button {
+.check-button:focus,
+.trash-button {
   outline: none;
 }
 
@@ -422,12 +498,18 @@ p {
 .sidebar-detail {
   width: 25%;
   height: 650px;
-  margin: 35px 20px 50px 20px;
+  margin: 100px 20px 50px 20px;
   padding: 15px 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   float: right;
   text-align: center;
   box-sizing: border-box;
   border: 1px solid black;
-  border-radius: 10px;
+}
+
+.details {
+  box-sizing: border-box;
+  border: 1px solid black;
+  width: 100%;
+  height: 90%;
 }
