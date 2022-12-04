@@ -1,62 +1,71 @@
-
-@media screen and (max-width: 499px) {
-  .nav {
-    z-index: 10;
-    background-color: #fff;
-    width: 300px;
-    position: absolute;
-
-    /* This trasform moves the drawer off canvas. */
-    -webkit-transform: translate(-300px, 0);
-    transform: translate(-300px, 0);
-
-    /* Optionally, we animate the drawer. */
-    transition: transform 0.3s ease;
+@media screen and (max-width: 1000px) {
+  .learn{
+    width: 80%;
   }
 
-  .open {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
+  .earn{
+    width: 80%;
   }
 
-  .nav__item {
-    display: list-item;
-    border-bottom: 1px solid #E0E0E0;
-    width: 100%;
-    text-align: left;
+  .learn-content{
+    display: flex;
+    flex-wrap: wrap;
   }
-}
 
-@media screen and (min-width: 500px) {
-  .header__menu {
-    display: none;
+  .learn-content img{
+    margin: 0 auto;
+    width: 85%;
   }
-}
 
-@media screen and (min-width: 650px) {
-}
+  .learn-content h1{
+    margin: 0 auto 20px auto;
+    padding: 0;
+  }
 
-@media screen and (min-width: 700px) {
-}
-
-@media screen and (min-width: 800px) {
-  .nav__list {
-    max-width: 800px;
+  .learn-content p{
     margin: 0 auto;
   }
-}
 
-@media screen and (min-width: 900px) {
-
-}
-
-@media screen and (min-width: 1200px) {
-  .header {
-    position: absolute;
-    margin-left: 5%;
+  .learn-description{
+    padding: 0 7% 7% 7%;
+    margin: 0 auto;
   }
 
-  .nav__list {
-    margin-left: 500px;
+  .earn-content{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .earn-content img{
+    margin: 0 auto;
+    width: 85%;
+  }
+
+  .earn-content h1{
+    margin: 0 auto 20px auto;
+    padding: 0;
+    text-align: center;
+  }
+
+  .earn-content p{
+    margin: 0;
+    width: 100%;
+  }
+
+  .earn-description{
+    padding: 0 7% 7% 7%;
+    margin: 0 auto;
+  }
+
+  .text-earn{
+    margin-top: 0;
+    padding-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .hero img{
+    width: 65%;
   }
 }

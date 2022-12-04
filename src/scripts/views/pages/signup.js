@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import {
@@ -5,10 +6,13 @@ import {
 } from 'firebase/database';
 import Swal from 'sweetalert2';
 import firebaseConfig from '../../data/config';
+import '../component/headerNav';
 
 const signup = {
     async render() {
         return `
+        <header-nav></header-nav>
+        <main tabindex="0" id="mainContent">
         <div class="signup_header">SPIRITUP</div>
         <div class="signup_box">
         <h1>Sign In</h1>
@@ -20,8 +24,10 @@ const signup = {
         <input type="password" id="signupPassword" name="signupPassword" placeholder="Password" required><br>
         <label for="signupPasswordConfirm">Confirm Password</label>
         <input type="password" id="signupPasswordConfirm" name="signupPasswordConfirm" placeholder="Confirm Your Password" required>
-        <input type="submit" id="signup" name="signup" value="Sign In">
+        <input type="checkbox" id="toogle_password" class="toogle_password">Show Password
+        <input type="submit" id="signup" name="signup" value="Sign Up">
         </div>
+        </main>
     `;
     },
     async afterRender() {
@@ -84,6 +90,23 @@ const signup = {
                             text: errorMessage,
                         });
                     });
+            }
+        });
+
+        const toogle_password = document.getElementById('toogle_password');
+        const signupPassword = document.getElementById('signupPassword');
+        const signupPasswordConfirm = document.getElementById('signupPasswordConfirm');
+        toogle_password.addEventListener('click', () => {
+            if (signupPassword.type === 'password') {
+                signupPassword.type = 'text';
+            } else {
+                signupPassword.type = 'password';
+            }
+
+            if (signupPasswordConfirm.type === 'password') {
+                signupPasswordConfirm.type = 'text';
+            } else {
+                signupPasswordConfirm.type = 'password';
             }
         });
     },
