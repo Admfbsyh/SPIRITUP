@@ -15,7 +15,7 @@ const signup = {
         <main tabindex="0" id="mainContent">
         <div class="signup_header">SPIRITUP</div>
         <div class="signup_box">
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Nama Lengkap" required><br>
         <label for="signupEmail">E-mail</label>
