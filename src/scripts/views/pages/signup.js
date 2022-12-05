@@ -109,6 +109,16 @@ const signup = {
                 signupPasswordConfirm.type = 'password';
             }
         });
+
+        const humberger = document.getElementById('humberger');
+        humberger.addEventListener('click', () => {
+            const x = document.getElementById('myTopnav');
+            if (x.className === 'topnav') {
+                x.className += ' responsive';
+            } else {
+                x.className = 'topnav';
+            }
+        });
     },
 
 };

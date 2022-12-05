@@ -69,3 +69,72 @@
     width: 65%;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .login_box{
+    width: 70%;
+  }
+
+  .signup_box{
+    width: 70%;
+  }
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .hero h1{
+    font-size: 25px;
+  }
+  .hero p{
+    font-size: 10px;
+    margin-top:5px;
+  }
+
+  .about_tim p{
+    font-size: 10px;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
+  .login_box{
+    width: 80%;
+  }
+
+  .signup_box{
+    width: 80%;
+  }
+
+  .login_box .forgot-password{
+    font-size: 12px;
+    float: none;
+    width: 100%;
+    margin-top: 0;
+  }
+  
+  .login_box .create-new-account{
+    font-size: 12px;
+    float: none;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}

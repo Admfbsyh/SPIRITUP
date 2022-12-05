@@ -15,6 +15,16 @@ const halamanlogin = {
     async afterRender() {
         const dashLoginContainer = document.querySelector('#halamanlogin');
         dashLoginContainer.innerHTML += homelogin();
+
+        const humberger = document.getElementById('humberger');
+        humberger.addEventListener('click', () => {
+            const x = document.getElementById('myTopnav');
+            if (x.className === 'topnav') {
+                x.className += ' responsive';
+            } else {
+                x.className = 'topnav';
+            }
+        });
     },
 };
 

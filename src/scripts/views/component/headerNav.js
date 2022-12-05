@@ -9,13 +9,14 @@ class headerNav extends HTMLElement {
         <header class="header">
           <img src="../spiritup.png" alt="Spiritup"/>
         </header>
-        <nav id="drawer" class="nav">
-          <ul class="nav__list">
-            <li class="nav__item"><a href="#/home">Home</a></li>
-            <li class="nav__item"><a href="#/login">Login</a></li>
-            <li class="nav__item_signup"><a href="#/signup">Signup</a></li>
-          </ul>
-        </nav>
+        <div class="topnav" id="myTopnav">
+          <a href="javascript:void(0);" class="icon" id="humberger">
+            <i class="fa fa-bars"></i>
+          </a>
+          <a href="#/signup"  class="active">Sign Up</a>
+          <a href="#/login">Login</a>
+          <a href="#/">Home</a>
+        </div>
         `;
     }
 }
