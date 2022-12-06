@@ -10,7 +10,7 @@ menu_toggle.addEventListener("click", () => {
 
 // Add Choosed File User Profile
 
-const imgDiv = document.querySelector(".email");
+const imgDiv = document.querySelector(".email_user");
 const img = document.querySelector("#photo");
 const file = document.querySelector("#file");
 const uploadBtn = document.querySelector("#uploadBtn");
