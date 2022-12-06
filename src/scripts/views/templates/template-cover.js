@@ -2,11 +2,11 @@ const homelogin = () => `
     <div class="hero">
         <h1>Manage your Day Now !</h1>
         <p>Mulai kerjakan Tugas secara teratur dan Disiplin</p>
-        <img src="../time-manage.png" alt="mengatur waktu aktifitas">
+        <img src="../time-manage.png" alt="aktifitas mengatur waktu">
     </div> 
     <div class="learn">
         <div class="learn-content">
-        <img src="../manage-day.png" alt="mengatur waktu aktifitas" class="item_learn_1">
+        <img src="../manage-day.png" alt="mengatur waktu" class="item_learn_1">
         <h1 class="item_learn_2">1. Manage Your Day</h1>
         <div class="learn-description item_learn_3">
         <p>Saatnya atur waktu untuk membuat rutinitas sehari-hari agar semakin bermanfaat dengan membuat dan menyelesaikan urutan tugas yang ada. Dengan adanya website ini diharapkan para pengguna bisa memanfaatkannya untuk membantu setiap pekerjaan rumah, ataupun pekerjaan lain.</p>
@@ -15,7 +15,7 @@ const homelogin = () => `
     </div> 
     <div class="earn">
         <div class="earn-content">
-        <img src="../acc-scedule.png" alt="mengatur waktu aktifitas" class="item_earn_1">
+        <img src="../acc-scedule.png" alt="mengatur waktu" class="item_earn_1">
         <div class="text-earn">
         <h1 class="item_earn_2">2. Let's Get Reward</h1>
         <div class="earn-description item_earn_3">

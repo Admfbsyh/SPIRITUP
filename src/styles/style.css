@@ -33,7 +33,7 @@ body {
 }
 
 .header img{
-  margin-top:10px;
+  margin-top:17px;
   width :90px;
   position: fixed;
   margin-left: 5%;
@@ -41,9 +41,47 @@ body {
   top: 0;
 }
 
+/* 
+  Navbar Halaman Utama
+*/
+
+.topnav {
+  overflow: hidden;
+  top: 0;
+  width: 100%;
+  background-color: #14213D;
+  position: fixed;
+  z-index: 998;
+}
+
+.topnav a {
+  float: right;
+  text-align: right;
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 14px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.topnav a:hover {
+  background-color: #E5E5E5;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #FCA311;
+  color: black;
+}
+
+.topnav .icon {
+  display: none;
+}
+
 /*
- * Top level navigation
- */
+  Top level navigation
+*/
 
 .nav {
   width: 100%;
@@ -88,6 +126,11 @@ body {
   text-decoration: underline;
   font-weight: bold;
 }
+
+/* 
+  Hero Element
+*/
+
 .hero{
   text-align: center;
 }
@@ -95,13 +138,21 @@ body {
   margin-top:50px;
   width: 50%;
   display: block;
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .hero h1{
   font-weight: bold;
   font-size: 40px;
 }
+.hero p{
+  font-size: 14px;
+}
+
+/* 
+  Halaman Utama
+*/
+
 .learn{
   margin: 100px auto 20px auto;
   width: 80%;
@@ -124,16 +175,17 @@ body {
   margin-left: 90px;
   width: 70%;
 }
-
 .learn-content h1{
   margin-top: 5%;
+  margin-bottom: 15px;
   font-weight: bold;
   color: #FFFFFF;
+  font-size: 28px;
 }
 .learn-description{
   padding-right: 15%;
   padding-bottom: 40px;
-  font-size: 15px;
+  font-size: 16px;
   line-height:1.5;
 }
 .learn-content p{
@@ -144,17 +196,18 @@ body {
   text-align: justify;
 }
 
-.item_earn_1 { grid-area: item_1; }
-.item_earn_2 { grid-area: item_2; }
-.item_earn_3 { grid-area: item_3; }
-
 .earn{
-  margin: 50px auto 20px auto;
+  margin: 40px auto 20px auto;
   width: 80%;
   height: 30%;
   background-color: #14213D;
   border-radius: 50px;
 }
+
+.item_earn_1 { grid-area: item_1; }
+.item_earn_2 { grid-area: item_2; }
+.item_earn_3 { grid-area: item_3; }
+
 .earn-content{
   display: grid;
   grid-template-areas:
@@ -167,28 +220,29 @@ body {
   width: 40%;
   margin-left: 40%;
 }
+.earn-content h1{
+  margin-top: 5%;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: 28px;
+}
 .text-earn{
   margin-top: 25px;
   padding-left: 130px;
 }
-.earn-content h1{
-  font-weight: bold;
-  color: #FFFFFF;
-  margin-bottom: 7%;
-  margin-top: 5%
-}
 .earn-description{
-  padding-bottom: 70px;
+  padding-bottom: 40px;
   width: 150%;
-  font-size: 15px;
+  font-size: 16px;
   line-height:1.5;
 }
-
 .earn-content p{
-  padding: 10px;
+  padding: 20px;
   border-radius: 20px;
   width: 100%;
   background-color: #FFFFFF;
+  text-align: justify;
 }
 
 .login_header{
@@ -337,15 +391,26 @@ body {
   color:white;
 }
 
+/* 
+  About Us
+*/
+
 .about_tim{
-  margin-top:100px;
+  margin-top:70px;
   margin-bottom:50px;
   text-align: center;
 }
 
-.about_tim p{
-  margin-bottom: 50px;
+.about_tim h1{
+  font-weight: bold;
+  font-size: 40px;
 }
+
+.about_tim p{
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
 .container{
   position: relative; 
   width: 90%;
@@ -360,7 +425,7 @@ body {
   position: relative;
   width: 230px;
   height: 230px;
-  background: #000;
+  background: #000000;
   transition:0.5s;
   transform-style:preserve-3d ;
   overflow: hidden;
@@ -423,7 +488,7 @@ body {
   box-sizing: border-box;
 }
 .container .box .content h2{
-  color: #fff;
+  color: #ffffff;
   transition: 0.3s;
   text-transform: uppercase;
   margin-bottom: 5px;
@@ -440,38 +505,4 @@ footer{
   width: 100%;
   height: 20%;
   background-color: #FCA311;
-}
-
-.topnav {
-  overflow: hidden;
-  top: 0;
-  width: 100%;
-  background-color: #14213D;
-  position: fixed;
-  z-index: 998;
-}
-
-.topnav a {
-  float: right;
-  text-align: right;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #FCA311;
-  color: black;
-}
-
-.topnav .icon {
-  display: none;
 }
