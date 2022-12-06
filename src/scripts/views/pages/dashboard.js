@@ -13,15 +13,16 @@ const dashboard = {
     async render() {
         return `
         <header-nav-dashboard></header-nav-dashboard>
+        <main class="content">
         <div class="container-dash">
-          <section class="input-part">
+          <section class="input_part">
             <h2>Tambahkan Task Baru</h2>
             <form id="inputTask">
-              <div class="input_ inner_">
+              <div class="input_ inner">
                 <label for="inputTaskTitle">Judul Task</label>
                 <input id="inputTaskTitle" type="text" required />
               </div>
-              <div class="input_">0
+              <div class="input_">
                 <label for="inputTaskDate">Tanggal</label>
                 <input id="inputTaskDate" type="date" required />
               </div>
@@ -41,16 +42,16 @@ const dashboard = {
         </div>
 
         <div class="container-dash">
-          <section class="create_task">
+          <section class="create_Task">
             <h2>Regular Task</h2>
-            <div id="incompleteCreatetaskfList" class="list_of_task"></div>
+            <div id="incompleteCreatetaskfList" class="task_list"></div>
           </section>
-          <section class="create_task">
+          <section class="create_Task">
             <h2>Important Task</h2>
-            <div id="completeCreatetaskList" class="list_of_task"></div>
+            <div id="completeCreatetaskList" class="task_list"></div>
           </section>
         </div>
-      </div>
+      </main>
     </div>
     <button class="open_button" onclick="openForm()">Buka Formulir</button>
 
@@ -61,10 +62,8 @@ const dashboard = {
         <label for="nama"><b>Nama : </b></label>
         <input type="text" placeholder="Masukkan Nama" name="nama" required />
         <input type="file" id="file" accept="image/*" hidden />
-        <div class="image_area" data-img=""></div>
-        <button class="image_select">Select Image</button>
-        <!-- <img id="myimg" /> <label id="upProgres"></label>
-        <button id="upload" class="upl">Upload Foto</button> -->
+        <div class="img_area" data-img=""></div>
+        <button class="select_image">Select Image</button>
         <button type="submit" class="btn">Kirim</button>
         <button type="button" class="btn cancel" onclick="closeForm()">
           Tutup
