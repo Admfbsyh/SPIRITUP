@@ -1,17 +1,19 @@
-// Add Menu Hamburger
-const menu = document.getElementById("menu-label");
-const sidebar = document.getElementsByClassName("sidebar")[0];
-const imgDiv = document.querySelector(".list-item-user");
-const img = document.querySelector("#photo");
-const file = document.querySelector("#file");
-const uploadBtn = document.querySelector("#uploadBtn");
+// Add Hamburger SIdebar Menu
 
-menu.addEventListener("click", function () {
-  sidebar.classList.toggle("hide");
-  console.log("ok");
+const menu_toggle = document.querySelector(".menu-toggle");
+const sidebar = document.querySelector(".sidebar");
+
+menu_toggle.addEventListener("click", () => {
+  menu_toggle.classList.toggle("is-active");
+  sidebar.classList.toggle("is-active");
 });
 
 // Add Choosed File User Profile
+
+const imgDiv = document.querySelector(".email");
+const img = document.querySelector("#photo");
+const file = document.querySelector("#file");
+const uploadBtn = document.querySelector("#uploadBtn");
 
 imgDiv.addEventListener("mouseenter", function () {
   uploadBtn.style.display = "block";
@@ -35,6 +37,8 @@ file.addEventListener("change", function () {
   }
 });
 
+// Add Pop Up Form
+
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
@@ -43,9 +47,9 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 
-const selectImage = document.querySelector(".select-image");
+const selectImage = document.querySelector(".select_image");
 const inputFile = document.querySelector("#file");
-const imgArea = document.querySelector(".img-area");
+const imgArea = document.querySelector(".img_area");
 
 selectImage.addEventListener("click", function () {
   inputFile.click();
