@@ -204,7 +204,7 @@ body {
   grid-template-columns: auto auto;
 }
 .earn-content img{
-  width: 60%;
+  width: 50px;
   margin-left: 20px;
 }
 .text-earn{
