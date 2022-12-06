@@ -15,90 +15,63 @@ const dashboard = {
     async render() {
         return `
         <header-nav-dashboard></header-nav-dashboard>
-        <div class="app">
-            <div class="menu-toggle">
-                <div class="hamburger">
-                    <span></span>
-                </div>
-            </div>
-        
-            <!-- sidebar menu kiri -->
-            <aside class="sidebar">
-                <nav class="menu">
-                    <a href="#" class="email_user">
-                        <img src="../public/assets/useer.jpg" id="photo" class="user" />
-                        <input type="file" id="file" />
-                        <label for="file" id="uploadBtn">Choose Photo</label>
-                        <span class="email" id="email"></span>
-                    </a>
-                    <a href="dashboard.html" class="menu-item is-active">Task</a>
-                    <a href="completed.html" class="menu-item">Completed</a>
-                    <a href="#" class="menu-item">Account</a>
-                    <a id="log-out" class="menu-item"><span>Log-out</span></a>
-                </nav>
-            </aside>
-        
-            <main class="content">
-                <div class="container-dash">
-                    <section class="input_part">
-                        <h2>Tambahkan Task Baru</h2>
-                        <form id="inputTask">
-                            <div class="input_ inner">
-                                <label for="inputTaskTitle">Judul Task</label>
-                                <input id="inputTaskTitle" type="text" required />
-                            </div>
-                            <div class="input_">
-                                <label for="inputTaskDate">Tanggal</label>
-                                <input id="inputTaskDate" type="date" required />
-                            </div>
-                            <div class="input_">
-                                <label for="inputDescribeTask">Deskripsi Task</label>
-                                <input id="inputDescribeTask" type="text" required />
-                            </div>
-                            <div class="input_inline">
-                                <label for="inputTaskIsComplete">Task Important</label>
-                                <input id="inputTaskIsComplete" type="checkbox" />
-                            </div>
-                            <button id="taskSubmit" type="submit">
-                                Masukkan Task ke rak <span>Regular Task</span>
-                            </button>
-                        </form>
-                    </section>
-                </div>
-        
-                <div class="container-dash">
-                    <section class="create_Task">
-                        <h2>Regular Task</h2>
-                        <div id="incompleteCreatetaskfList" class="task_list"></div>
-                    </section>
-                    <section class="create_Task">
-                        <h2>Important Task</h2>
-                        <div id="completeCreatetaskList" class="task_list"></div>
-                    </section>
-                </div>
-            </main>
-        
-            </div>
-                <button class="open_button" onclick="openForm()">Buka Formulir</button>
-            </div>
-        
-            <div class="form_popup" id="myForm">
-                <form class="form_container">
-                    <h2>Bukti Task</h2>
-        
-                    <label for="nama"><b>Nama : </b></label>
-                    <input type="text" placeholder="Masukkan Nama" name="nama" required />
-                    <input type="file" id="file" accept="image/*" hidden />
-                    <div class="img_area" data-img=""></div>
-                    <button class="select_image">Select Image</button>
-                    <button type="submit" class="btn">Kirim</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">
-                        Tutup
-                    </button>
-                </form>
-            </div>
+        <main class="content">
+        <div class="container-dash">
+          <section class="input_part">
+            <h2>Tambahkan Task Baru</h2>
+            <form id="inputTask">
+              <div class="input_ inner">
+                <label for="inputTaskTitle">Judul Task</label>
+                <input id="inputTaskTitle" type="text" required />
+              </div>
+              <div class="input_">
+                <label for="inputTaskDate">Tanggal</label>
+                <input id="inputTaskDate" type="date" required />
+              </div>
+              <div class="input_">
+                <label for="inputDescribeTask">Deskripsi Task</label>
+                <input id="inputDescribeTask" type="text" required />
+              </div>
+              <div class="input_inline">
+                <label for="inputTaskIsComplete">Task Important</label>
+                <input id="inputTaskIsComplete" type="checkbox" />
+              </div>
+              <button id="taskSubmit" type="submit">
+                Masukkan Task ke rak <span>Regular Task</span>
+              </button>
+            </form>
+          </section>
         </div>
-        
+
+        <div class="container-dash">
+          <section class="create_Task">
+            <h2>Regular Task</h2>
+            <div id="incompleteCreatetaskfList" class="task_list"></div>
+          </section>
+          <section class="create_Task">
+            <h2>Important Task</h2>
+            <div id="completeCreatetaskList" class="task_list"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <button class="open_button" onclick="openForm()">Buka Formulir</button>
+
+    <div class="form_popup" id="myForm">
+      <form class="form_container">
+        <h2>Bukti Task</h2>
+
+        <label for="nama"><b>Nama : </b></label>
+        <input type="text" placeholder="Masukkan Nama" name="nama" required />
+        <input type="file" id="file" accept="image/*" hidden />
+        <div class="img_area" data-img=""></div>
+        <button class="select_image">Select Image</button>
+        <button type="submit" class="btn">Kirim</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">
+          Tutup
+        </button>
+      </form>
+    </div>
     `;
     },
     async afterRender() {

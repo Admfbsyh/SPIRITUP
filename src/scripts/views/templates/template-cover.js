@@ -80,9 +80,9 @@ const tasks = (display) => `
     <p> ${display.data().date}</p>
     <p> ${display.data().description}</p>
     </div>
-    <button class="check_button"></button>
-    <button class="undo_button"></button>
-    <button class="trash_button" id="delete"></button>
+    <button class="check-button"></button>
+    <button class="undo-button"></button>
+    <button class="trash-button" id="delete"></button>
     </div> 
 `;
 
