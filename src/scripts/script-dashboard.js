@@ -93,61 +93,61 @@ function makeTask(taskObject) {
     task_shelf.setAttribute('id', `task-${taskObject.id}`);
 
     if (taskObject.isCompleted) {
-        const undoButton = document.createElement('button');
-        undoButton.classList.add('undo-button');
+    const undoButton = document.createElement("button");
+    undoButton.classList.add("undo_button");
 
-        undoButton.addEventListener('click', () => {
-            alert('Apakah anda yakin ingin mengembalikan task ke Regular task?');
-            undoTaskFromCompleted(taskObject.id);
-        });
+    undoButton.addEventListener("click", function () {
+      alert("Apakah anda yakin ingin mengembalikan task ke Regular task?");
+      undoTaskFromCompleted(taskObject.id);
+    });
 
-        const checkButton = document.createElement('button');
-        checkButton.classList.add('check-button');
+    const checkButton = document.createElement("button");
+    checkButton.classList.add("check_button");
 
-        checkButton.addEventListener('click', () => {
-            alert(
-                'Selamat, silahkan isi form bukti kegiatan untuk menuju ke completed',
-            );
-            addTaskToCompleted(taskObject.id);
-        });
+    checkButton.addEventListener("click", function () {
+      alert(
+        "Selamat, silahkan isi form bukti kegiatan untuk menuju ke completed"
+      );
+      addTaskToCompleted(taskObject.id);
+    });
 
-        const trashButton = document.createElement('button');
-        trashButton.classList.add('trash-button');
+    const trashButton = document.createElement("button");
+    trashButton.classList.add("trash_button");
 
-        trashButton.addEventListener('click', () => {
-            removeTaskFromCompleted(taskObject.id);
-        });
+    trashButton.addEventListener("click", function () {
+      removeTaskFromCompleted(taskObject.id);
+    });
 
-        task_shelf.append(trashButton, undoButton, checkButton);
-    } else {
-        const checkButton = document.createElement('button');
-        checkButton.classList.add('check-button');
+    task_shelf.append(trashButton, undoButton, checkButton);
+  } else {
+    const checkButton = document.createElement("button");
+    checkButton.classList.add("check_button");
 
-        checkButton.addEventListener('click', () => {
-            addTaskToCompleted(taskObject.id);
-        });
+    checkButton.addEventListener("click", function () {
+      addTaskToCompleted(taskObject.id);
+    });
 
-        const trashButton = document.createElement('button');
-        trashButton.classList.add('trash-button');
+    const trashButton = document.createElement("button");
+    trashButton.classList.add("trash_button");
 
-        trashButton.addEventListener('click', () => {
-            removeTaskFromCompleted(taskObject.id);
-        });
+    trashButton.addEventListener("click", function () {
+      removeTaskFromCompleted(taskObject.id);
+    });
 
-        const replaceButton = document.createElement('button');
-        replaceButton.classList.add('replace-button');
+    const replaceButton = document.createElement("button");
+    replaceButton.classList.add("replace_button");
 
-        replaceButton.addEventListener('click', () => {
-            alert(
-                'Tugas anda akan dialihkan pada daftar task Important. Tekan OK untuk melanjutkan',
-            );
-            replaceTaskFromCompleted(taskObject.id);
-        });
+    replaceButton.addEventListener("click", function () {
+      alert(
+        "Tugas anda akan dialihkan pada daftar task Important. Tekan OK untuk melanjutkan"
+      );
+      replaceTaskFromCompleted(taskObject.id);
+    });
 
-        task_shelf.append(trashButton, replaceButton, checkButton);
-    }
+    task_shelf.append(trashButton, replaceButton, checkButton);
+  }
 
-    return task_shelf;
+  return task_shelf;
 }
 
 function addTask() {
