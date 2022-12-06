@@ -1,70 +1,74 @@
-// Add Menu Hamburger
-const menu = document.getElementById("menu-label");
-const sidebar = document.getElementsByClassName("sidebar")[0];
-const imgDiv = document.querySelector(".list-item-user");
-const img = document.querySelector("#photo");
-const file = document.querySelector("#file");
-const uploadBtn = document.querySelector("#uploadBtn");
+// Add Hamburger SIdebar Menu
 
-menu.addEventListener("click", function () {
-  sidebar.classList.toggle("hide");
-  console.log("ok");
+const menu_toggle = document.querySelector('.menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+
+menu_toggle.addEventListener('click', () => {
+    menu_toggle.classList.toggle('is-active');
+    sidebar.classList.toggle('is-active');
 });
 
 // Add Choosed File User Profile
 
-imgDiv.addEventListener("mouseenter", function () {
-  uploadBtn.style.display = "block";
+const imgDiv = document.querySelector('.email_user');
+const img = document.querySelector('#photo');
+const file = document.querySelector('#file');
+const uploadBtn = document.querySelector('#uploadBtn');
+
+imgDiv.addEventListener('mouseenter', () => {
+    uploadBtn.style.display = 'block';
 });
 
-imgDiv.addEventListener("mouseleave", function () {
-  uploadBtn.style.display = "none";
+imgDiv.addEventListener('mouseleave', () => {
+    uploadBtn.style.display = 'none';
 });
 
-file.addEventListener("change", function () {
-  const choosedFile = this.files[0];
+file.addEventListener('change', function () {
+    const choosedFile = this.files[0];
 
-  if (choosedFile) {
-    const reader = new FileReader();
+    if (choosedFile) {
+        const reader = new FileReader();
 
-    reader.addEventListener("load", function () {
-      img.setAttribute("src", reader.result);
-    });
+        reader.addEventListener('load', () => {
+            img.setAttribute('src', reader.result);
+        });
 
-    reader.readAsDataURL(choosedFile);
-  }
+        reader.readAsDataURL(choosedFile);
+    }
 });
+
+// Add Pop Up Form
 
 function openForm() {
-  document.getElementById("myForm").style.display = "block";
+    document.getElementById('myForm').style.display = 'block';
 }
 
 function closeForm() {
-  document.getElementById("myForm").style.display = "none";
+    document.getElementById('myForm').style.display = 'none';
 }
 
-const selectImage = document.querySelector(".select-image");
-const inputFile = document.querySelector("#file");
-const imgArea = document.querySelector(".img-area");
+const selectImage = document.querySelector('.select_image');
+const inputFile = document.querySelector('#file');
+const imgArea = document.querySelector('.img_area');
 
-selectImage.addEventListener("click", function () {
-  inputFile.click();
+selectImage.addEventListener('click', () => {
+    inputFile.click();
 });
 
-inputFile.addEventListener("change", function () {
-  const image = this.files[0];
-  if (image.size < 2000000) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const allImg = imgArea.querySelectorAll("img");
-      allImg.forEach((item) => item.remove());
-      const imgUrl = reader.result;
-      const img = document.createElement("img");
-      img.src = imgUrl;
-      imgArea.appendChild(img);
-      imgArea.classList.add("active");
-      imgArea.dataset.img = image.name;
-    };
-    reader.readAsDataURL(image);
-  }
+inputFile.addEventListener('change', function () {
+    const image = this.files[0];
+    if (image.size < 2000000) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const allImg = imgArea.querySelectorAll('img');
+            allImg.forEach((item) => item.remove());
+            const imgUrl = reader.result;
+            const img = document.createElement('img');
+            img.src = imgUrl;
+            imgArea.appendChild(img);
+            imgArea.classList.add('active');
+            imgArea.dataset.img = image.name;
+        };
+        reader.readAsDataURL(image);
+    }
 });

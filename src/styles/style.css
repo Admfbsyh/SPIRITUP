@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  font-family: Arial;
+  font-family: Montserrat;
   font-size: 12px;
   color: #424242;
 }
@@ -35,8 +35,10 @@ body {
 .header img{
   margin-top:17px;
   width :90px;
-  position: absolute;
+  position: fixed;
   margin-left: 5%;
+  z-index: 999;
+  top: 0;
 }
 
 /* 
@@ -45,14 +47,18 @@ body {
 
 .topnav {
   overflow: hidden;
+  top: 0;
+  width: 100%;
   background-color: #14213D;
+  position: fixed;
+  z-index: 998;
 }
 
 .topnav a {
   float: right;
   text-align: right;
   display: block;
-  color: #f2f2f2;
+  color: #ffffff;
   text-align: center;
   padding: 20px 16px;
   text-decoration: none;
@@ -74,7 +80,7 @@ body {
 }
 
 /*
-  Top Level Navigation
+  Top level navigation
 */
 
 .nav {
@@ -99,7 +105,6 @@ body {
   line-height: 24px;
   text-transform: uppercase;
 }
-
 .nav__item_signup{
   box-sizing: border-box;
   display: inline-block;
@@ -127,7 +132,6 @@ body {
 */
 
 .hero{
-  padding-top: 70px;
   text-align: center;
 }
 .hero img{
@@ -150,38 +154,39 @@ body {
 */
 
 .learn{
-  margin: 50px auto 20px auto;
+  margin: 100px auto 20px auto;
   width: 80%;
   height: 30%;
   background-color: #14213D;
   border-radius: 50px;
 }
 
+.item_learn_1 { grid-area: item1; }
+.item_learn_2 { grid-area: item2; }
+.item_learn_3 { grid-area: item3; }
+
 .learn-content{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    'item1 item1 item2 item2 item2 item2'
+    'item1 item1 item3 item3 item3 item3';
 }
 .learn-content img{
   margin-left: 90px;
-  grid-row-start: 1;
-  grid-row-end: 3;
   width: 70%;
 }
 .learn-content h1{
-  margin-top: 25px;
-  margin-bottom: 10px;
+  margin-top: 5%;
+  margin-bottom: 15px;
   font-weight: bold;
   color: #FFFFFF;
-  grid-column-start: 2;
-  grid-column-end: 4;
   font-size: 28px;
 }
 .learn-description{
-  grid-row-start: 2;
-  grid-column-start: 2;
-  grid-column-end: 4;
   padding-right: 15%;
   padding-bottom: 40px;
+  font-size: 16px;
+  line-height:1.5;
 }
 .learn-content p{
   padding: 20px;
@@ -189,47 +194,55 @@ body {
   width: 100%;
   background-color: #FFFFFF;
   text-align: justify;
-  font-size: 18px;
 }
 
 .earn{
-  margin: 20px auto 20px auto;
+  margin: 40px auto 20px auto;
   width: 80%;
   height: 30%;
   background-color: #14213D;
   border-radius: 50px;
 }
+
+.item_earn_1 { grid-area: item_1; }
+.item_earn_2 { grid-area: item_2; }
+.item_earn_3 { grid-area: item_3; }
+
 .earn-content{
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-areas:
+    'item_2 item_2 item_2 item_2 item_1 item_1'
+    'item_3 item_3 item_3 item_3 item_1 item_1';
 }
 .earn-content img{
-  width: 45%;
-  padding-top: 25px;
-  margin-left: 60px;
-  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 40%;
+  margin-left: 40%;
+}
+.earn-content h1{
+  margin-top: 5%;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: 28px;
 }
 .text-earn{
   margin-top: 25px;
   padding-left: 130px;
-  grid-row-start: 2;
-  grid-row-end: 1;
-}
-.earn-content h1{
-  font-weight: bold;
-  color: #FFFFFF;
-  margin-bottom: 10px;
-  font-size: 28px;
 }
 .earn-description{
   padding-bottom: 40px;
+  width: 150%;
+  font-size: 16px;
+  line-height:1.5;
 }
 .earn-content p{
   padding: 20px;
   border-radius: 20px;
   width: 100%;
   background-color: #FFFFFF;
-  font-size: 18px;
+  text-align: justify;
 }
 
 .login_header{
@@ -252,6 +265,7 @@ body {
 
 #mainContent{
   width: 100%;
+  margin-top: 90px;
 }
 
 .login_box h1{
@@ -386,10 +400,12 @@ body {
   margin-bottom:50px;
   text-align: center;
 }
+
 .about_tim h1{
   font-weight: bold;
   font-size: 40px;
 }
+
 .about_tim p{
   margin-bottom: 40px;
   font-size: 14px;
@@ -472,7 +488,7 @@ body {
   box-sizing: border-box;
 }
 .container .box .content h2{
-  color: #fff;
+  color: #ffffff;
   transition: 0.3s;
   text-transform: uppercase;
   margin-bottom: 5px;
@@ -483,10 +499,6 @@ body {
 .container .box:hover .content h2{
   transform: translateY(0px);
 }
-
-/* 
-  Footer
-*/
 
 footer{
   margin-top:100px;

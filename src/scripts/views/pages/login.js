@@ -18,7 +18,8 @@ const login = {
             <input type="text" id="email" name="email" placeholder="E-mail" required><br>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
-            <input type="checkbox" id="toogle_password" class="toogle_password">Show Password
+            <input type="checkbox" id="toogle_password" class="toogle_password">
+            <label for="toogle_password"> Show Password</label>
             <input type="submit" id="login" name="login" value="Login"><br>
             <a href="#/forgot_password">
                 <input type="submit" value="Forgot Password?" class="forgot-password">
