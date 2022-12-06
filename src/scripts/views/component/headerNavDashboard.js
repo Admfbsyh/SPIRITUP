@@ -6,60 +6,35 @@ class headerNavDashboard extends HTMLElement {
     render() {
         this.innerHTML = `
         <a href="#mainContent" class="skip-link">Skip To Content</a>
+        <!-- Header Nav Atas -->
         <header>
-      <div class="header-nav">
-        <nav>
-          <img src="../spiritup.png" class="logo" />
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><button id="log-out" class="log-out">Log-Out</button></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Sidebar menu Kiri -->
-    <div class="main-sidebar">
-      <div class="sidebar">
-        <div class="main">
-          <div class="list-item-user">
-            <a href="#">
-              <img src="../public/assets/useer.jpg" id="photo" class="user" />
-              <input type="file" id="file" />
-              <label for="file" id="uploadBtn">Choose Photo</label>
-              <span class="email" id="email"></span
-              >
-            </a>
+          <div class="header-nav">
+            <img src="../public/assets/icons/spiritup.png" class="logo" />
           </div>
-          <div class="list-item">
-            <a href="dashboard.html" class="active">
-              <img src="../public/assets/task.png" alt="" class="icon" />
-              <span class="description">Task</span>
-            </a>
+        </header>
+        <!-- Hamburger -->
+        <div class="app">
+          <div class="menu-toggle">
+            <div class="hamburger">
+              <span></span>
+            </div>
           </div>
-          <div class="list-item">
-            <a href="completed.html">
-              <img src="../public/assets/completed.png" alt="" class="icon" />
-              <span class="description">Completed</span>
-            </a>
-          </div>
-          <div class="list-item">
-            <a href="#">
-              <img src="../public/assets/edit.png" alt="" class="icon" />
-              <span class="description">Account</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div id="menu-button">
-          <input type="checkbox" id="menu-checkbox" />
-          <label for="menu-checkbox" id="menu-label">
-            <div id="hamburger"></div>
-          </label>
-        </div>
+    
+          <!-- sidebar menu kiri -->
+          <aside class="sidebar">
+            <nav class="menu">
+              <a href="#" class="email_user">
+                <img src="../public/assets/useer.jpg" id="photo" class="user" />
+                <input type="file" id="file" />
+                <label for="file" id="uploadBtn">Choose Photo</label>
+                <span class="email" id="email"></span>
+              </a>
+              <a href="dashboard.html" class="menu-item is-active">Task</a>
+              <a href="completed.html" class="menu-item">Completed</a>
+              <a href="#" class="menu-item">Account</a>
+              <a id="log-out" class="menu-item"><span>Log-out</span></a>
+            </nav>
+          </aside>
         `;
     }
 }
