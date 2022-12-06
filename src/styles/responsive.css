@@ -29,6 +29,8 @@
   .learn-description{
     padding: 0 7% 7% 7%;
     margin: 0 auto;
+    font-size: 13px;
+    line-height: 1.4;
   }
 
   .earn-content{
@@ -55,6 +57,9 @@
   .earn-description{
     padding: 0 7% 7% 7%;
     margin: 0 auto;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.4;
   }
 
   .text-earn{
@@ -126,7 +131,10 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: fixed;
+    z-index: 999;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -137,4 +145,5 @@
     display: block;
     text-align: left;
   }
+  
 }

@@ -2,31 +2,28 @@ const homelogin = () => `
     <div class="hero">
         <h1>Manage your Day Now !</h1>
         <p>Mulai kerjakan Tugas secara teratur dan Disiplin</p>
-        <img src="../time-manage.png" alt="aktifitas mengatur waktu">
+        <img src="../time-manage.png" alt="mengatur waktu aktifitas">
     </div> 
-    
     <div class="learn">
         <div class="learn-content">
-            <img src="../manage-day.png" alt="aktifitas mengatur waktu">
-            <h1>1. Manage Your Day</h1>
-            <div class="learn-description">
-                <p>Saatnya atur waktu untuk membuat rutinitas sehari-hari agar semakin bermanfaat dengan membuat dan menyelesaikan urutan tugas yang ada. Dengan adanya website ini diharapkan para pengguna bisa memanfaatkannya untuk membantu setiap pekerjaan rumah, ataupun pekerjaan lain.</p>
-            </div>
+        <img src="../manage-day.png" alt="mengatur waktu aktifitas" class="item_learn_1">
+        <h1 class="item_learn_2">1. Manage Your Day</h1>
+        <div class="learn-description item_learn_3">
+        <p>Saatnya atur waktu untuk membuat rutinitas sehari-hari agar semakin bermanfaat dengan membuat dan menyelesaikan urutan tugas yang ada. Dengan adanya website ini diharapkan para pengguna bisa memanfaatkannya untuk membantu setiap pekerjaan rumah, ataupun pekerjaan lain.</p>
+        </div>
         </div>
     </div> 
-    
     <div class="earn">
         <div class="earn-content">
-            <img src="../reward.png" alt="aktifitas mengatur waktu">
-            <div class="text-earn">
-                <h1>2. Let's Get Reward</h1>
-                <div class="earn-description">
-                <p>Dapatkan hadiah dengan cara selesaikan setiap tugas yang ada. Mulai kerjakan dan dapatkan hadiah sebagai bentuk apresiasi untuk diri sendiri karena telah berusaha mengerjakan suatu hal dengan tuntas dan bijaksana</p>
-                </div>
-            </div>
+        <img src="../acc-scedule.png" alt="mengatur waktu aktifitas" class="item_earn_1">
+        <div class="text-earn">
+        <h1 class="item_earn_2">2. Let's Get Reward</h1>
+        <div class="earn-description item_earn_3">
+        <p>Dapatkan hadiah dengan cara selesaikan setiap tugas yang ada. Mulai kerjakan dan dapatkan hadiah sebagai bentuk apresiasi untuk diri sendiri karena telah berusaha mengerjakan suatu hal dengan tuntas dan bijaksana</p>
+        </div>
+        </div>
         </div>
     </div>
-    
     <div class="about_tim">
      <h1> About Team </h1>
      <p>kamu nanya, kamu nanya siapa yang buat? nih aku kasih tau ya</p>
@@ -76,4 +73,17 @@ const homelogin = () => `
 </div>
 `;
 
-export { homelogin };
+const tasks = (display) => `
+    <div class="task_item" id="${display.id}">
+    <div class="inner_">
+    <h2> ${display.data().judul}</h2>
+    <p> ${display.data().date}</p>
+    <p> ${display.data().description}</p>
+    </div>
+    <button class="check_button"></button>
+    <button class="undo_button"></button>
+    <button class="trash_button" id="delete"></button>
+    </div> 
+`;
+
+export { homelogin, tasks };

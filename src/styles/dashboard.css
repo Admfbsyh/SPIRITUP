@@ -8,15 +8,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-header {
+.header_dashboard {
   background-color: #14213d;
-  height: 100%;
   width: 100%;
   text-align: center;
 }
 
 .header-nav img {
-  width: 10%;
+  width :90px;
   margin: 10px;
 }
 
@@ -246,7 +245,7 @@ header {
 .input_part {
   width: 100%;
   height: 50%;
-  float: left;
+  float: right;
   margin-top: 22px;
   display: flex;
   flex-direction: column;
@@ -345,7 +344,7 @@ p {
   width: 30px;
   height: 30px;
 
-  background: url("../Asset/img/undo-ouline.svg");
+  background: url("../public/assets/undo-ouline.svg");
   background-size: contain;
   margin-left: 25px;
   cursor: pointer;
@@ -353,7 +352,7 @@ p {
 }
 
 .undo_button:hover {
-  background: url("../Asset/img/replace.svg");
+  background: url("../public/assets/replace.svg");
   background-size: contain;
 }
 
@@ -361,7 +360,7 @@ p {
   width: 30px;
   height: 30px;
 
-  background: url("../Asset/img/replace.svg");
+  background: url("../public/assets/replace.svg");
   background-size: contain;
   margin-left: 25px;
   cursor: pointer;
@@ -369,7 +368,7 @@ p {
 }
 
 .replace_button:hover {
-  background: url("../Asset/img/undo-ouline.svg");
+  background: url("../public/assets/undo-ouline.svg");
   background-size: contain;
 }
 
@@ -377,7 +376,7 @@ p {
   width: 30px;
   height: 30px;
 
-  background: url("../Asset/img/trash-outline.svg");
+  background: url("../public/assets/trash-outline.svg");
   background-size: contain;
   margin-left: 25px;
   cursor: pointer;
@@ -385,7 +384,7 @@ p {
 }
 
 .trash_button:hover {
-  background: url("../Asset/img/trash-fill.svg");
+  background: url("../public/assets/trash-fill.svg");
   background-size: contain;
 }
 
@@ -393,7 +392,7 @@ p {
   width: 30px;
   height: 30px;
 
-  background: url("../Asset/img/check-outline.svg");
+  background: url("../public/assets/check-outline.svg");
   background-size: contain;
   margin-left: 25px;
   cursor: pointer;
@@ -401,7 +400,7 @@ p {
 }
 
 .check_button:hover {
-  background: url("../Asset/img/check-solid.svg");
+  background: url("../public/assets/check-solid.svg");
   background-size: contain;
 }
 

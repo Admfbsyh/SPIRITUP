@@ -24,7 +24,8 @@ const signup = {
         <input type="password" id="signupPassword" name="signupPassword" placeholder="Password" required><br>
         <label for="signupPasswordConfirm">Confirm Password</label>
         <input type="password" id="signupPasswordConfirm" name="signupPasswordConfirm" placeholder="Confirm Your Password" required>
-        <input type="checkbox" id="toogle_password" class="toogle_password">Show Password
+        <input type="checkbox" id="toogle_password" class="toogle_password">
+        <label for="toogle_password"> Show Password</label>
         <input type="submit" id="signup" name="signup" value="Sign Up">
         </div>
         </main>
