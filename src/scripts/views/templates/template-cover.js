@@ -17,7 +17,7 @@ const homelogin = () => `
     
     <div class="earn">
         <div class="earn-content">
-            <img src="../acc-scedule.png" alt="aktifitas mengatur waktu">
+            <img src="../reward.png" alt="aktifitas mengatur waktu">
             <div class="text-earn">
                 <h1>2. Let's Get Reward</h1>
                 <div class="earn-description">
