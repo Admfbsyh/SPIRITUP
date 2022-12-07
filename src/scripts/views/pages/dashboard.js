@@ -9,51 +9,87 @@ import {
 } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import firebaseConfig from '../../data/config';
-import { tasks } from '../templates/template-cover';
+import { tasks } from '../template/template-cover';
 
 const dashboard = {
     async render() {
         return `
         <header-nav-dashboard></header-nav-dashboard>
+        <div class="app">
+          <div class="menu-toggle">
+            <div class="hamburger">
+              <span></span>
+            </div>
+          </div>
+    
+          <!-- sidebar menu kiri -->
+          <aside class="sidebar">
+            <nav class="menu">
+              <a href="#" class="email_user">
+                <img src="../public/assets/useer.jpg" id="photo" class="user" />
+                <input type="file" id="file" />
+                <label for="file" id="uploadBtn">Choose Photo</label>
+                <span class="email" id="email"></span>
+              </a>
+              <a href="dashboard.html" class="menu-item is-active">Task</a>
+              <a href="completed.html" class="menu-item">Completed</a>
+              <a href="#" class="menu-item">Account</a>
+              <a id="log-out" class="menu-item"><span>Log-out</span></a>
+            </nav>
+          </aside>
         <main class="content">
-        <div class="container-dash">
-          <section class="input_part">
-            <h2>Tambahkan Task Baru</h2>
+
+          <div class="container_form">
             <form id="inputTask">
-              <div class="input_ inner">
-                <label for="inputTaskTitle">Judul Task</label>
-                <input id="inputTaskTitle" type="text" required />
+              <div class="row">
+                <div class="col-25">
+                  <label for="inputTaskTitle">Judul Task</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="inputTaskTitle" placeholder="Judul task..." required>
+                </div>
               </div>
-              <div class="input_">
-                <label for="inputTaskDate">Tanggal</label>
-                <input id="inputTaskDate" type="date" required />
+
+              <div class="row">
+                <div class="col-25">
+                  <label for="inputTaskDate">Tanggal</label>
+                </div>
+                <div class="col-75">
+                  <input type="date" id="inputTaskDate" required>
+                </div>
               </div>
-              <div class="input_">
-                <label for="inputDescribeTask">Deskripsi Task</label>
-                <input id="inputDescribeTask" type="text" required />
+
+              <div class="row">
+                <div class="col-25">
+                  <label for="inputDescribeTask">Deskripsi Task</label>
+                </div>
+                <div class="col-75">
+                  <textarea id="inputDescribeTask" placeholder="Deskripsi Task..." style="height:150px" required></textarea>
+                </div>
               </div>
+
               <div class="input_inline">
                 <label for="inputTaskIsComplete">Task Important</label>
                 <input id="inputTaskIsComplete" type="checkbox" />
               </div>
-              <button id="taskSubmit" type="submit">
-                Masukkan Task ke rak <span>Regular Task</span>
-              </button>
-            </form>
-          </section>
-        </div>
 
-        <div class="container-dash">
-          <section class="create_Task">
-            <h2>Regular Task</h2>
-            <div id="incompleteCreatetaskfList" class="task_list"></div>
-          </section>
-          <section class="create_Task">
-            <h2>Important Task</h2>
-            <div id="completeCreatetaskList" class="task_list"></div>
-          </section>
-        </div>
-      </main>
+              <div class="row">
+                <button id="taskSubmit" type="submit">
+                  Masukkan Task ke rak <b>Regular Task</b>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="container_list">
+            <h3>Regular Task</h3>
+            <ul id="incompleteCreatetaskfList" class="task_list"></ul>
+
+            <h3>Important Task</h3>
+            <ul id="completeCreatetaskList" class="task_list"></ul>
+          </div>
+        </main>
+      </div>
     </div>
     <button class="open_button" onclick="openForm()">Buka Formulir</button>
 
@@ -133,7 +169,6 @@ const dashboard = {
                                 } catch (e) {
                                     console.log(e);
                                 }
-                                location.reload();
                             });
                         } else {
                             taskReguler.innerHTML += tasks(display);
