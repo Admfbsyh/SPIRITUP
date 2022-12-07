@@ -1,4 +1,4 @@
-import { homelogin } from '../templates/template-cover';
+import { homelogin } from '../template/template-cover';
 import '../component/headerNav';
 
 const halamanlogin = {
