@@ -78,7 +78,7 @@ body {
 
 .sidebar {
   flex: 1 1 0;
-  max-width: 200px;
+  max-width: 220px;
   padding: 2rem 1rem;
   background-color: #fca311;
 }
@@ -94,7 +94,7 @@ body {
   padding-top: 15px;
   margin: 5px;
   padding-bottom: 15px;
-  border-radius: 25px;
+  border-radius: 8px;
   box-sizing: border-box;
   background: #14213d;
   align-items: center;
@@ -150,11 +150,12 @@ body {
   color: #fff;
   text-decoration: none;
   transition: 0.2s linear;
-  margin: 5px;
+  margin: 10px 5px;
   padding-bottom: 15px;
-  border-radius: 25px;
+  border-radius: 8px;
   box-sizing: border-box;
   background: #14213d;
+  font-size: 14px;
 }
 
 .sidebar .menu .menu-item span {
@@ -163,7 +164,6 @@ body {
   text-decoration: none;
   transition: 0.2s linear;
   margin: 5px;
-  border-radius: 25px;
   box-sizing: border-box;
   background: #14213d;
 }
@@ -183,7 +183,7 @@ body {
 .sidebar .menu .menu-item span:hover,
 .sidebar .menu .menu-item.is-active {
   color: #3bba9c;
-  border-right: 5px solid #3bba9c;
+  /* border-right: 5px solid #3bba9c; */
 }
 
 .sidebar .menu .email_user:hover {
@@ -235,11 +235,6 @@ body {
   .sidebar.is-active {
     left: 0;
   }
-}
-
-.container-dash {
-  background-color: #ffffff;
-  flex-grow: 1;
 }
 
 .input_part {
@@ -338,75 +333,6 @@ p {
   cursor: pointer;
   position: relative;
   float: right;
-}
-
-.undo_button {
-  width: 30px;
-  height: 30px;
-
-  background: url("../public/assets/undo-ouline.svg");
-  background-size: contain;
-  margin-left: 25px;
-  cursor: pointer;
-  border: none;
-}
-
-.undo_button:hover {
-  background: url("../public/assets/replace.svg");
-  background-size: contain;
-}
-
-.replace_button {
-  width: 30px;
-  height: 30px;
-
-  background: url("../public/assets/replace.svg");
-  background-size: contain;
-  margin-left: 25px;
-  cursor: pointer;
-  border: none;
-}
-
-.replace_button:hover {
-  background: url("../public/assets/undo-ouline.svg");
-  background-size: contain;
-}
-
-.trash_button {
-  width: 30px;
-  height: 30px;
-
-  background: url("../public/assets/trash-outline.svg");
-  background-size: contain;
-  margin-left: 25px;
-  cursor: pointer;
-  border: none;
-}
-
-.trash_button:hover {
-  background: url("../public/assets/trash-fill.svg");
-  background-size: contain;
-}
-
-.check_button {
-  width: 30px;
-  height: 30px;
-
-  background: url("../public/assets/check-outline.svg");
-  background-size: contain;
-  margin-left: 25px;
-  cursor: pointer;
-  border: none;
-}
-
-.check_button:hover {
-  background: url("../public/assets/check-solid.svg");
-  background-size: contain;
-}
-
-.check_button:focus,
-.trash_button {
-  outline: none;
 }
 
 .open_button {
@@ -555,4 +481,218 @@ p {
 
 .select_image:hover {
   background: #555;
+}
+
+
+
+
+
+
+
+.container_form input[type=text], 
+.container_form input[type=date], 
+.container_form select, 
+.container_form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+}
+
+.container_form label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-size: 17px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.container_form button[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+.container_form button[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container_form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, 
+  .col-75, 
+  .container_form button[type=submit], 
+  .container_form input[type=date] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+
+
+
+
+
+/* Basic Style */
+
+.container_list {
+  display: block;
+  width: 80%;
+  margin: 50px auto 0;
+}
+.container_list ul {
+  margin: 0;
+  padding: 0;
+}
+.container_list li * {
+  float: left;
+}
+.container_list li, .container_list h3 {
+  clear:both;
+  list-style:none;
+}
+.container_list input, .container_list button {
+  outline: none;
+}
+.container_list button {
+  background: none;
+  border: 0px;
+  color: #888;
+  font-size: 18px;
+  width: 65px;
+  min-height: 44px;
+  margin: 15px 5px 15px 0;
+  font-family: Lato, sans-serif;
+  cursor: pointer;
+}
+.container_list button:hover {
+  color: rgb(45, 168, 96);
+}
+/* Heading */
+.container_list h3,
+.container_list label[for='new-task'] div {
+  color: #333;
+  font-weight: 700;
+  font-size: 18px;
+  border-bottom: 2px solid #333;
+  padding: 30px 0 10px;
+  margin: 0;
+  text-transform: uppercase;
+}
+.container_list input[type="text"] {
+  margin: 0;
+  font-size: 18px;
+  line-height: 18px;
+  height: 18px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  font-family: Lato, sans-serif;
+  color: #888;
+}
+.container_list input[type="text"]:focus {
+  color: #333;
+}
+
+/* New Task */
+.container_list label[for='new-task'] div {
+  display: block;
+  margin: 0 0 20px;
+}
+.container_list input#new-task {
+  float: left;
+  width: 318px;
+}
+p > button:hover {
+  color: #0FC57C;
+}
+
+/* Task list */
+.container_list li {
+  overflow: hidden;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+li > input[type="checkbox"] {
+  margin: 0 10px;
+  position: relative;
+  top: 15px;
+}
+
+li > label div{
+  width: 100%;
+  padding: 0 0 0 11px;
+}
+
+li > label > .title_data {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 40px;
+}
+li > label > .date_data {
+  font-size: 13px;
+  line-height: 40px;
+}
+li > label > .desc_data {
+  font-size: 15px;
+  line-height: 25px;
+  text-align: justify;
+}
+
+li >  input[type="text"] {
+  width: 226px;
+}
+li > .delete:hover {
+  color: #CF2323;
+}
+
+/* Completed */
+.container_list #completed-tasks label div {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Edit Task */
+.container_list ul li input[type=text] {
+  display:none;
+}
+
+.container_list ul li.editMode input[type=text] {
+  display:block;
+}
+
+.container_list ul li.editMode label div {
+  display:none;
 }
