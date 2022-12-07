@@ -25,11 +25,7 @@ const dashboard = {
           <!-- sidebar menu kiri -->
           <aside class="sidebar">
             <nav class="menu">
-              <a href="#" class="email_user">
-                <img src="../public/assets/useer.jpg" id="photo" class="user" />
-                <input type="file" id="file" />
-                <label for="file" id="uploadBtn">Choose Photo</label>
-                <span class="email" id="email"></span>
+              <a href="#" class="email_user"><span class="email" id="email"></span>
               </a>
               <a href="dashboard.html" class="menu-item is-active">Task</a>
               <a href="completed.html" class="menu-item">Completed</a>
@@ -111,6 +107,16 @@ const dashboard = {
     `;
     },
     async afterRender() {
+        // Add Hamburger SIdebar Menu
+
+        const menu_toggle = document.querySelector(".menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+
+        menu_toggle.addEventListener("click", () => {
+        menu_toggle.classList.toggle("is-active");
+        sidebar.classList.toggle("is-active");
+        });
+        
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth();
