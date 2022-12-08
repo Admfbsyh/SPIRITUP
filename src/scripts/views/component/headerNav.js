@@ -13,9 +13,9 @@ class headerNav extends HTMLElement {
           <a href="javascript:void(0);" class="icon" id="humberger">
             <i class="fa fa-bars"></i>
           </a>
-          <a href="#/signup"  class="active">Sign Up</a>
-          <a href="#/login">Login</a>
-          <a href="#/">Home</a>
+          <a href="?#/signup"  class="active">Sign Up</a>
+          <a href="?#/login">Login</a>
+          <a href="?#/">Home</a>
         </div>
         `;
     }

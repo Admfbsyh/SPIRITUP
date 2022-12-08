@@ -15,7 +15,7 @@ body {
 }
 
 .header-nav img {
-  width: 90px;
+  width :90px;
   margin: 10px;
 }
 
@@ -90,12 +90,14 @@ body {
   line-height: 16px;
   text-align: left;
   color: #ffffff;
-  margin: 10px 5px;
-  padding: 15px 3px 15px 3px;
+  margin: 15px;
+  padding-top: 15px;
+  margin: 5px;
+  padding-bottom: 15px;
   border-radius: 8px;
   box-sizing: border-box;
   background: #14213d;
-  align-items: left;
+  align-items: center;
   text-decoration: none;
   text-align: center;
   transform: translate(-1%, -1%);
@@ -104,8 +106,42 @@ body {
 }
 
 .sidebar .menu .email_user span {
+  margin-left: 10px;
   font-size: 15px;
-  margin: 5px;
+}
+
+.sidebar .menu img {
+  height: 10%;
+  width: 10%;
+  border-radius: 5%;
+  margin-left: 18px;
+}
+
+#photo {
+  height: 30%;
+  width: 30%;
+  float: left;
+}
+
+#file {
+  display: none;
+}
+
+#uploadBtn {
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: wheat;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  display: none;
 }
 
 .sidebar .menu .menu-item {
@@ -447,16 +483,22 @@ p {
   background: #555;
 }
 
-.container_form input[type="text"],
-.container_form input[type="date"],
-.container_form select,
+
+
+
+
+
+
+.container_form input[type=text], 
+.container_form input[type=date], 
+.container_form select, 
 .container_form textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
 }
 
@@ -464,11 +506,11 @@ p {
   padding: 12px 12px 12px 0;
   display: inline-block;
   font-size: 17px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.container_form button[type="submit"] {
-  background-color: #04aa6d;
+.container_form button[type=submit] {
+  background-color: #04AA6D;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -477,7 +519,7 @@ p {
   float: right;
 }
 
-.container_form button[type="submit"]:hover {
+.container_form button[type=submit]:hover {
   background-color: #45a049;
 }
 
@@ -508,20 +550,25 @@ p {
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .col-25,
-  .col-75,
-  .container_form button[type="submit"],
-  .container_form input[type="date"] {
+  .col-25, 
+  .col-75, 
+  .container_form button[type=submit], 
+  .container_form input[type=date] {
     width: 100%;
     margin-top: 0;
   }
 }
 
+
+
+
+
+
 /* Basic Style */
 
 .container_list {
   display: block;
-  width: 80%;
+  width: 85%;
   margin: 50px auto 0;
 }
 .container_list ul {
@@ -529,15 +576,13 @@ p {
   padding: 0;
 }
 .container_list li * {
-  float: left;
+  float: none;
 }
-.container_list li,
-.container_list h3 {
-  clear: both;
-  list-style: none;
+.container_list li, .container_list h3 {
+  clear:both;
+  list-style:none;
 }
-.container_list input,
-.container_list button {
+.container_list input, .container_list button {
   outline: none;
 }
 .container_list button {
@@ -545,9 +590,9 @@ p {
   border: 0px;
   color: #888;
   font-size: 18px;
-  width: 65px;
+  width: 55 px;
   min-height: 44px;
-  margin: 15px 5px 15px 0;
+  margin: 0 10px 0 10px;
   font-family: Lato, sans-serif;
   cursor: pointer;
 }
@@ -556,7 +601,7 @@ p {
 }
 /* Heading */
 .container_list h3,
-.container_list label[for="new-task"] div {
+.container_list label[for='new-task'] div {
   color: #333;
   font-weight: 700;
   font-size: 18px;
@@ -582,16 +627,15 @@ p {
 }
 
 /* New Task */
-.container_list label[for="new-task"] div {
+.container_list label[for='new-task'] div {
   display: block;
   margin: 0 0 20px;
 }
 .container_list input#new-task {
-  float: left;
   width: 318px;
 }
 p > button:hover {
-  color: #0fc57c;
+  color: #0FC57C;
 }
 
 /* Task list */
@@ -606,19 +650,23 @@ li > input[type="checkbox"] {
   top: 15px;
 }
 
-li > label div {
+li > label div{
   width: 100%;
   padding: 0 0 0 11px;
+}
+
+li > label{
+  margin: 15px 0;
 }
 
 li > label > .title_data {
   font-size: 25px;
   font-weight: bold;
-  line-height: 40px;
+  line-height: 25px;
 }
 li > label > .date_data {
   font-size: 13px;
-  line-height: 40px;
+  line-height: 25px;
 }
 li > label > .desc_data {
   font-size: 15px;
@@ -626,11 +674,11 @@ li > label > .desc_data {
   text-align: justify;
 }
 
-li > input[type="text"] {
+li >  input[type="text"] {
   width: 226px;
 }
 li > .delete:hover {
-  color: #cf2323;
+  color: #CF2323;
 }
 
 /* Completed */
@@ -640,14 +688,14 @@ li > .delete:hover {
 }
 
 /* Edit Task */
-.container_list ul li input[type="text"] {
-  display: none;
+.container_list ul li input[type=text] {
+  display:none;
 }
 
-.container_list ul li.editMode input[type="text"] {
-  display: block;
+.container_list ul li.editMode input[type=text] {
+  display:block;
 }
 
 .container_list ul li.editMode label div {
-  display: none;
+  display:none;
 }

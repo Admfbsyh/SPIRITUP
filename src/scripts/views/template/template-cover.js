@@ -73,16 +73,4 @@ const homelogin = () => `
 </div>
 `;
 
-const tasks = (display) => `
-    <li class="task_item" id="${display.id}">
-        <label>
-            <div class="title_data">${display.data().judul}</div> <br>
-            <div class="date_data">${display.data().date}</div> <br>
-            <div class="desc_data">${display.data().description}</div> 
-        </label>
-        <button class="done">Done</button>
-        <button class="delete" id="delete">Delete</button>
-    <li>
-`;
-
-export { homelogin, tasks };
+export { homelogin };

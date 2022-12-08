@@ -14,13 +14,15 @@ const login = {
         <div class="login_header">SPIRITUP</div>
         <div class="login_box">
             <h1>Login</h1>
-            <label for="email">E-mail</label>
-            <input type="text" id="email" name="email" placeholder="E-mail" required><br>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-            <input type="checkbox" id="toogle_password" class="toogle_password">
-            <label for="toogle_password"> Show Password</label>
-            <input type="submit" id="login" name="login" value="Login"><br>
+            <form action="" id="form">
+                <label for="email">E-mail</label>
+                <input type="text" id="email" placeholder="E-mail" required><br>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="checkbox" id="toogle_password" class="toogle_password">
+                <label for="toogle_password"> Show Password</label>
+                <input type="submit" id="login" value="Login"><br>
+            </form>
             <a href="#/forgot_password">
                 <input type="submit" value="Forgot Password?" class="forgot-password">
             </a>
@@ -36,13 +38,13 @@ const login = {
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
-        const signinButton = document.getElementById('login');
-        signinButton.addEventListener('click', () => {
+        const signin = document.getElementById('form');
+        signin.addEventListener('submit', () => {
             const emailSignin = document.getElementById('email').value;
             const passwordSignin = document.getElementById('password').value;
             signInWithEmailAndPassword(auth, emailSignin, passwordSignin)
                 .then((userCredential) => {
-                // Signed in
+                    // Signed in
                     const { user } = userCredential;
                     const lgDate = new Date();
                     update(ref(database, `users/${user.uid}`), {

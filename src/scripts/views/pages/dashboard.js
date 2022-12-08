@@ -5,11 +5,10 @@ import '../component/headerNavDashboard';
 import { initializeApp } from 'firebase/app';
 import Swal from 'sweetalert2';
 import {
-    getFirestore, doc, getDocs, onSnapshot, where, query, collection, addDoc, deleteDoc, deleteField,
+    getFirestore, onSnapshot, where, query, collection, addDoc, deleteDoc, doc,
 } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import firebaseConfig from '../../data/config';
-import { tasks } from '../template/template-cover';
 
 const dashboard = {
     async render() {
@@ -25,9 +24,13 @@ const dashboard = {
           <!-- sidebar menu kiri -->
           <aside class="sidebar">
             <nav class="menu">
-              <a href="#" class="email_user"><span class="email" id="email"></span>
+              <a href="#" class="email_user">
+                <img src="../assets/useer.jpg" id="photo" class="user" />
+                <input type="file" id="file" />
+                <label for="file" id="uploadBtn">Choose Photo</label>
+                <span class="email" id="email"></span>
               </a>
-              <a href="dashboard.html" class="menu-item is-active">Task</a>
+              <a href="?#/dashboard" class="menu-item is-active">Task</a>
               <a href="completed.html" class="menu-item">Completed</a>
               <a href="#" class="menu-item">Account</a>
               <a id="log-out" class="menu-item"><span>Log-out</span></a>
@@ -98,8 +101,9 @@ const dashboard = {
         <input type="file" id="file" accept="image/*" hidden />
         <div class="img_area" data-img=""></div>
         <button class="select_image">Select Image</button>
+        <button class="upload_Image" id="upload">Upload</button>
         <button type="submit" class="btn">Kirim</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">
+        <button type="button" class="btn_cancel">
           Tutup
         </button>
       </form>
@@ -107,16 +111,6 @@ const dashboard = {
     `;
     },
     async afterRender() {
-        // Add Hamburger SIdebar Menu
-
-        const menu_toggle = document.querySelector(".menu-toggle");
-        const sidebar = document.querySelector(".sidebar");
-
-        menu_toggle.addEventListener("click", () => {
-        menu_toggle.classList.toggle("is-active");
-        sidebar.classList.toggle("is-active");
-        });
-        
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth();
@@ -124,12 +118,121 @@ const dashboard = {
         const date = document.getElementById('inputTaskDate');
         const description = document.getElementById('inputDescribeTask');
         const isCompleted = document.getElementById('inputTaskIsComplete');
-        const taskSubmit = document.getElementById('taskSubmit');
+        const taskSubmit = document.getElementById('inputTask');
         onAuthStateChanged(auth, (user) => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('is-active');
+                sidebar.classList.toggle('is-active');
+            });
+
+            // Add Choosed File User Profile
+
+            const imgDiv = document.querySelector('.email_user');
+            const img = document.querySelector('#photo');
+            const file = document.querySelector('#file');
+            const uploadBtn = document.querySelector('#uploadBtn');
+
+            imgDiv.addEventListener('mouseenter', () => {
+                uploadBtn.style.display = 'block';
+            });
+
+            imgDiv.addEventListener('mouseleave', () => {
+                uploadBtn.style.display = 'none';
+            });
+
+            file.addEventListener('change', () => {
+                const choosedFile = this.files[0];
+
+                if (choosedFile) {
+                    const reader = new FileReader();
+
+                    reader.addEventListener('load', () => {
+                        img.setAttribute('src', reader.result);
+                    });
+
+                    reader.readAsDataURL(choosedFile);
+                }
+            });
+            const selectImage = document.querySelector('.select_image');
+            const inputFile = document.querySelector('#file');
+            const imgArea = document.querySelector('.img_area');
+
+            selectImage.addEventListener('click', () => {
+                inputFile.click();
+            });
+
+            inputFile.addEventListener('change', () => {
+                const image = this.files[0];
+                if (image.size < 2000000) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const allImg = imgArea.querySelectorAll('img');
+                        allImg.forEach((item) => item.remove());
+                        const imgUrl = reader.result;
+                        const imgbox = document.createElement('img');
+                        imgbox.src = imgUrl;
+                        imgArea.appendChild(imgbox);
+                        imgArea.classList.add('active');
+                        imgArea.dataset.imgbox = image.name;
+                    };
+                    reader.readAsDataURL(image);
+                }
+            });
+
+            const closeForm = document.querySelector('.btn_cancel');
+            closeForm.addEventListener('click', () => {
+                document.getElementById('myForm').style.display = 'none';
+            });
             if (user) {
                 const { uid } = user;
                 document.getElementById('email').innerHTML = `Hello, ${user.email}`;
-                taskSubmit.addEventListener('click', () => {
+                const taskImportant = document.querySelector('#completeCreatetaskList');
+                const taskReguler = document.querySelector('#incompleteCreatetaskfList');
+
+                const renderTask = (display) => {
+                    const li = document.createElement('li');
+                    li.className = 'task_item';
+                    li.setAttribute('id', display.id);
+                    const label = document.createElement('label');
+                    const divTitle = document.createElement('div');
+                    divTitle.className = 'title_data';
+                    divTitle.textContent = display.data().judul;
+                    const divDate = document.createElement('div');
+                    divDate.className = 'date_data';
+                    divDate.textContent = display.data().date;
+                    const divDesc = document.createElement('div');
+                    divDesc.className = 'desc_data';
+                    divDesc.textContent = display.data().description;
+                    const doneBtn = document.createElement('button');
+                    doneBtn.className = 'done';
+                    doneBtn.innerText = 'Done';
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete';
+                    deleteBtn.innerText = 'delete';
+                    label.append(divTitle, divDate, divDesc);
+                    li.append(label, doneBtn, deleteBtn);
+
+                    deleteBtn.addEventListener('click', (e) => {
+                        const id = e.target.parentElement.getAttribute('id');
+                        deleteDoc(doc(db, 'task', id));
+                    });
+
+                    doneBtn.addEventListener('click', (e) => {
+                        document.getElementById('myForm').style.display = 'block';
+                    });
+
+                    if (display.data().isCompleted === true) {
+                        taskImportant.append(li);
+                    } else {
+                        taskReguler.append(li);
+                    }
+                };
+
+                taskSubmit.addEventListener('submit', (event) => {
+                    event.preventDefault();
                     const ref = collection(db, 'task');
                     addDoc(ref, {
                         judul: title.value,
@@ -147,10 +250,6 @@ const dashboard = {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'OK',
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.reload();
-                                }
                             });
                         })
                         .catch((error) => {
@@ -161,36 +260,25 @@ const dashboard = {
                             });
                         });
                 });
-                const taskImportant = document.querySelector('#completeCreatetaskList');
-                const taskReguler = document.querySelector('#incompleteCreatetaskfList');
                 const q = query(collection(db, 'task'), where('user', '==', uid));
-                const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                    querySnapshot.forEach((display) => {
-                        if (display.data().isCompleted === true) {
-                            taskImportant.innerHTML += tasks(display);
-                            const deleteTask = document.getElementById('delete');
-                            deleteTask.addEventListener('click', () => {
-                                try {
-                                    deleteDoc(doc(db, 'task', display.id));
-                                } catch (e) {
-                                    console.log(e);
-                                }
-                            });
-                        } else {
-                            taskReguler.innerHTML += tasks(display);
-                            const deleteTask = document.getElementById('delete');
-                            deleteTask.addEventListener('click', () => {
-                                try {
-                                    const result = deleteDoc(doc(db, 'task', display.id));
-                                    console.log(result);
-                                } catch (e) {
-                                    console.log(e);
-                                }
-                            });
+                onSnapshot(q, (snapshot) => {
+                    const changes = snapshot.docChanges();
+                    console.log(changes);
+                    changes.forEach((change) => {
+                        if (change.type === 'added') {
+                            renderTask(change.doc);
+                        } else if (change.type === 'removed') {
+                            if (change.doc.data().isCompleted === true) {
+                                const liImportant = taskImportant.querySelector(`[id=${change.doc.id}]`);
+                                taskImportant.removeChild(liImportant);
+                            } else {
+                                const liReguler = taskReguler.querySelector(`[id=${change.doc.id}]`);
+
+                                taskReguler.removeChild(liReguler);
+                            }
                         }
                     });
                 });
-                // eslint-disable-next-line no-inner-declarations
             } else {
                 location.replace('/');
             }
