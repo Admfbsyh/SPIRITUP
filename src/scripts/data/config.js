@@ -6,8 +6,6 @@ const firebaseConfig = {
     storageBucket: 'capstone-project-974be.appspot.com',
     messagingSenderId: '943221562290',
     appId: '1:943221562290:web:55ae603dabe1cb4659a2ab',
-
-    CACHE_NAME: 'SpiritUp-V1',
 };
 
 export default firebaseConfig;
