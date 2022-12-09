@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -352,24 +354,33 @@ p {
   display: none;
   position: fixed;
   bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0,0,0, 0.9);
   z-index: 9;
   padding: 5px;
 }
 
 .form_container {
-  max-width: 300px;
+  width: 400px;
   padding: 15px;
-  background-color: white;
-  margin: 10px;
+  background-color: #C69749;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .form_container h2 {
   font-size: 30px;
   text-align: center;
-  margin-bottom: 25px;
-  font-family: "Courier New", Courier, monospace;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  color: #282A3A;
 }
 
 .form_container b {
@@ -391,13 +402,58 @@ p {
 }
 
 .form_container .btn {
-  background-color: #fca311;
+  background-color: #03a167;
   color: white;
-  padding: 10px 15px;
+  padding: 12px 20px;
+  border: 1px solid black;
+  border-radius: 4px;
   cursor: pointer;
-  width: 100%;
-  margin-bottom: 10px;
-  opacity: 0.8;
+  width: 85%;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.form_container .btn:hover {
+  background-color: rgb(47, 132, 52);
+}
+
+#upProgress {
+  font-size: 15px;
+  color: rgb(230, 230, 230);
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.form_container .btn_cancel {
+  background-color: #d81111;
+  color: white;
+  padding: 12px 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 40%;
+  margin: 15px 0 20px 0;
+  font-weight: bold;
+}
+
+.form_container .btn_cancel:hover {
+  background-color: #c20404;
+}
+
+#inputName {
+  width: 80%;
+  margin-bottom: 15px;
+  background-color: #282A3A;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: rgba(235, 235, 235);
+  font-weight: bold;
+}
+
+#inputName::placeholder {
+  color: rgb(195, 195, 195);
+  font-weight: bold;
 }
 
 .form_container .cancel {
@@ -418,17 +474,11 @@ p {
 
 .img_area {
   position: relative;
-  width: 100%;
+  width: 85%;
   height: 150px;
-  background: #f1f1f1;
+  background: #282A3A;
   margin-bottom: 10px;
-  border-radius: 15px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid black;
+  border-radius: 12px;
 }
 
 .img_area img {
@@ -464,23 +514,11 @@ p {
   opacity: 1;
 }
 .select_image {
-  display: flex;
-  width: 100%;
-  padding: 5px 0;
-  border-radius: 15px;
-  background: none;
-  color: black;
-  font-weight: 500;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 20px;
-  justify-content: center;
-}
-
-.select_image:hover {
-  background: #555;
+ margin : 15px auto;
+ width: 80%;
+ background-color: rgba(235, 235, 235);
+ border: 1px solid #282A3A;
+ box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -516,7 +554,8 @@ p {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  float: right;
+  width: 300px;
+  margin: 20px 0 20px auto;
 }
 
 .container_form button[type=submit]:hover {
@@ -657,21 +696,38 @@ li > label div{
 
 li > label{
   margin: 15px 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 li > label > .title_data {
   font-size: 25px;
-  font-weight: bold;
-  line-height: 25px;
+  font-weight: bolder;
+  margin-bottom: 5px;
 }
 li > label > .date_data {
-  font-size: 13px;
+  font-size: 11px;
   line-height: 25px;
 }
 li > label > .desc_data {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 25px;
   text-align: justify;
+}
+
+li > label > .prize_data {
+  font-size: 15px;
+  line-height: 25px;
+  color: #059c65;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#inputDescribeTask {
+  resize: none;
+}
+
+#inputTaskDate{
+  resize: none;
 }
 
 li >  input[type="text"] {

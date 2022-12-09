@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable max-len */
 /* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
@@ -8,6 +9,9 @@ import {
     getFirestore, onSnapshot, where, query, collection, addDoc, deleteDoc, doc,
 } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import {
+    getStorage, uploadBytesResumable, ref, getDownloadURL,
+} from 'firebase/storage';
 import firebaseConfig from '../../data/config';
 
 const dashboard = {
@@ -30,10 +34,10 @@ const dashboard = {
                 <label for="file" id="uploadBtn">Choose Photo</label>
                 <span class="email" id="email"></span>
               </a>
-              <a href="?#/dashboard" class="menu-item is-active">Task</a>
-              <a href="completed.html" class="menu-item">Completed</a>
-              <a href="#" class="menu-item">Account</a>
-              <a id="log-out" class="menu-item"><span>Log-out</span></a>
+              <a href="?#/dashboard" class="menu-item is-active">Tugas</a>
+              <a href="?#/taskcompleted" class="menu-item">Terselesaikan</a>
+              <a href="#" class="menu-item">Akun</a>
+              <a id="log-out" class="menu-item"><span>Keluar</span></a>
             </nav>
           </aside>
         <main class="content">
@@ -42,10 +46,19 @@ const dashboard = {
             <form id="inputTask">
               <div class="row">
                 <div class="col-25">
-                  <label for="inputTaskTitle">Judul Task</label>
+                  <label for="inputTaskTitle">Judul Tugas</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="inputTaskTitle" placeholder="Judul task..." required>
+                  <input type="text" id="inputTaskTitle" placeholder="Judul tugas..." required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-25">
+                  <label for="prize">Hadiah</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="prize" placeholder="Masukan hadiah..." required>
                 </div>
               </div>
 
@@ -60,49 +73,46 @@ const dashboard = {
 
               <div class="row">
                 <div class="col-25">
-                  <label for="inputDescribeTask">Deskripsi Task</label>
+                  <label for="inputDescribeTask">Deskripsi Tugas</label>
                 </div>
                 <div class="col-75">
-                  <textarea id="inputDescribeTask" placeholder="Deskripsi Task..." style="height:150px" required></textarea>
+                  <textarea id="inputDescribeTask" placeholder="Deskripsi tugas..." style="height:150px" required></textarea>
                 </div>
               </div>
 
               <div class="input_inline">
-                <label for="inputTaskIsComplete">Task Important</label>
+                <label for="inputTaskIsComplete">Tugas Penting</label>
                 <input id="inputTaskIsComplete" type="checkbox" />
               </div>
 
               <div class="row">
                 <button id="taskSubmit" type="submit">
-                  Masukkan Task ke rak <b>Regular Task</b>
+                  Masukkan Task ke rak <span>Regular Task</span>
                 </button>
               </div>
             </form>
           </div>
 
           <div class="container_list">
-            <h3>Regular Task</h3>
+            <h3>Tugas Reguler</h3>
             <ul id="incompleteCreatetaskfList" class="task_list"></ul>
 
-            <h3>Important Task</h3>
+            <h3>Tugas Penting</h3>
             <ul id="completeCreatetaskList" class="task_list"></ul>
           </div>
         </main>
       </div>
     </div>
-    <button class="open_button" onclick="openForm()">Buka Formulir</button>
 
     <div class="form_popup" id="myForm">
-      <form class="form_container">
+      <form class="form_container" id="upload">
         <h2>Bukti Task</h2>
-
-        <label for="nama"><b>Nama : </b></label>
-        <input type="text" placeholder="Masukkan Nama" name="nama" required />
-        <input type="file" id="file" accept="image/*" hidden />
-        <div class="img_area" data-img=""></div>
-        <button class="select_image">Select Image</button>
-        <button class="upload_Image" id="upload">Upload</button>
-        <button type="submit" class="btn">Kirim</button>
+        <input type="text" placeholder="Masukkan nama..." id="inputName" required />
+        <img class="img_area" id="myImg"> <label id="upProgress"></label>
+        <div class="mb-3">
+          <input class="form-control form-control-sm select_image" id="imgInput" type="file" accept="image/jpg, image/png" required />
+        </div>
+        <button type="submit" class="btn uploadImage" >Kirim</button>
         <button type="button" class="btn_cancel">
           Tutup
         </button>
@@ -115,6 +125,7 @@ const dashboard = {
         const db = getFirestore(app);
         const auth = getAuth();
         const title = document.getElementById('inputTaskTitle');
+        const prize = document.getElementById('prize');
         const date = document.getElementById('inputTaskDate');
         const description = document.getElementById('inputDescribeTask');
         const isCompleted = document.getElementById('inputTaskIsComplete');
@@ -131,8 +142,6 @@ const dashboard = {
             // Add Choosed File User Profile
 
             const imgDiv = document.querySelector('.email_user');
-            const img = document.querySelector('#photo');
-            const file = document.querySelector('#file');
             const uploadBtn = document.querySelector('#uploadBtn');
 
             imgDiv.addEventListener('mouseenter', () => {
@@ -143,54 +152,29 @@ const dashboard = {
                 uploadBtn.style.display = 'none';
             });
 
-            file.addEventListener('change', () => {
-                const choosedFile = this.files[0];
-
-                if (choosedFile) {
-                    const reader = new FileReader();
-
-                    reader.addEventListener('load', () => {
-                        img.setAttribute('src', reader.result);
-                    });
-
-                    reader.readAsDataURL(choosedFile);
-                }
-            });
-            const selectImage = document.querySelector('.select_image');
-            const inputFile = document.querySelector('#file');
-            const imgArea = document.querySelector('.img_area');
-
-            selectImage.addEventListener('click', () => {
-                inputFile.click();
+            const imageInput = document.getElementById('imgInput');
+            let files = [];
+            let reader = new FileReader();
+            imageInput.addEventListener('change', (e) => {
+                files = e.target.files;
+                reader = new FileReader();
+                reader.addEventListener('load', () => {
+                    document.getElementById('myImg').src = reader.result;
+                });
+                reader.readAsDataURL(files[0]);
             });
 
-            inputFile.addEventListener('change', () => {
-                const image = this.files[0];
-                if (image.size < 2000000) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        const allImg = imgArea.querySelectorAll('img');
-                        allImg.forEach((item) => item.remove());
-                        const imgUrl = reader.result;
-                        const imgbox = document.createElement('img');
-                        imgbox.src = imgUrl;
-                        imgArea.appendChild(imgbox);
-                        imgArea.classList.add('active');
-                        imgArea.dataset.imgbox = image.name;
-                    };
-                    reader.readAsDataURL(image);
-                }
-            });
-
-            const closeForm = document.querySelector('.btn_cancel');
-            closeForm.addEventListener('click', () => {
-                document.getElementById('myForm').style.display = 'none';
-            });
             if (user) {
                 const { uid } = user;
                 document.getElementById('email').innerHTML = `Hello, ${user.email}`;
                 const taskImportant = document.querySelector('#completeCreatetaskList');
                 const taskReguler = document.querySelector('#incompleteCreatetaskfList');
+                const uploadImg = document.querySelector('#upload');
+                const closeForm = document.querySelector('.btn_cancel');
+                closeForm.addEventListener('click', () => {
+                    document.getElementById('myForm').style.display = 'none';
+                    location.reload();
+                });
 
                 const renderTask = (display) => {
                     const li = document.createElement('li');
@@ -199,21 +183,27 @@ const dashboard = {
                     const label = document.createElement('label');
                     const divTitle = document.createElement('div');
                     divTitle.className = 'title_data';
-                    divTitle.textContent = display.data().judul;
+                    const divPrize = document.createElement('div');
+                    divPrize.className = 'prize_data';
+                    divPrize.setAttribute('id', `prize${display.id}`);
+                    divTitle.setAttribute('id', `title${display.id}`);
+                    divTitle.textContent = `${display.data().judul}`;
+                    divPrize.textContent = `Hadiah: ${display.data().prize}`;
                     const divDate = document.createElement('div');
                     divDate.className = 'date_data';
                     divDate.textContent = display.data().date;
                     const divDesc = document.createElement('div');
                     divDesc.className = 'desc_data';
-                    divDesc.textContent = display.data().description;
+                    divDesc.textContent = `${display.data().description}`;
+                    const br = document.createElement('br');
                     const doneBtn = document.createElement('button');
                     doneBtn.className = 'done';
                     doneBtn.innerText = 'Done';
                     const deleteBtn = document.createElement('button');
                     deleteBtn.className = 'delete';
                     deleteBtn.innerText = 'delete';
-                    label.append(divTitle, divDate, divDesc);
-                    li.append(label, doneBtn, deleteBtn);
+                    label.append(divTitle, divPrize, divDate, divDesc);
+                    li.append(label, br, doneBtn, deleteBtn);
 
                     deleteBtn.addEventListener('click', (e) => {
                         const id = e.target.parentElement.getAttribute('id');
@@ -221,7 +211,60 @@ const dashboard = {
                     });
 
                     doneBtn.addEventListener('click', (e) => {
+                        const storage = getStorage();
                         document.getElementById('myForm').style.display = 'block';
+                        let imgUrl = '';
+                        uploadImg.addEventListener('submit', (event) => {
+                            event.preventDefault();
+                            const judulId = document.getElementById(`title${display.id}`).innerHTML;
+                            const prizeId = document.getElementById(`prize${display.id}`).innerHTML;
+                            const imgName = document.getElementById('inputName').value;
+                            const imgRef = ref(storage, `Images/${imgName}${judulId}`);
+                            const uploadImage = uploadBytesResumable(imgRef, files[0]);
+                            uploadImage.on(
+                                'state_changed',
+                                (snapshot) => {
+                                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                    document.getElementById('upProgress').innerHTML = `upload ${progress}% `;
+                                },
+                                (error) => {
+                                    console.log(error);
+                                },
+                                () => {
+                                    getDownloadURL(uploadImage.snapshot.ref).then((downloadURL) => {
+                                        imgUrl = downloadURL;
+                                        console.log(imgUrl);
+
+                                        const dataBukti = collection(db, 'bukti');
+                                        addDoc(dataBukti, {
+                                            judulTask: judulId,
+                                            nama: imgName,
+                                            prize: prizeId,
+                                            Url: imgUrl,
+                                            user: uid,
+                                        })
+                                            .then(() => {
+                                                Swal.fire({
+                                                    title: 'Task added success',
+                                                    text: 'tugas berhasil ditambahkan',
+                                                    icon: 'success',
+                                                    showCancelButton: false,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'OK',
+                                                });
+                                            })
+                                            .catch((error) => {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Oops...',
+                                                    text: error,
+                                                });
+                                            });
+                                    });
+                                },
+                            );
+                        });
                     });
 
                     if (display.data().isCompleted === true) {
@@ -233,9 +276,10 @@ const dashboard = {
 
                 taskSubmit.addEventListener('submit', (event) => {
                     event.preventDefault();
-                    const ref = collection(db, 'task');
-                    addDoc(ref, {
+                    const taskData = collection(db, 'task');
+                    addDoc(taskData, {
                         judul: title.value,
+                        prize: prize.value,
                         user: uid,
                         date: date.value,
                         description: description.value,
@@ -260,6 +304,7 @@ const dashboard = {
                             });
                         });
                 });
+
                 const q = query(collection(db, 'task'), where('user', '==', uid));
                 onSnapshot(q, (snapshot) => {
                     const changes = snapshot.docChanges();
