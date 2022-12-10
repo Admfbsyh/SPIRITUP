@@ -1,0 +1,76 @@
+.completed_container {
+    text-align: center;
+}
+
+.content .foto_bukti {
+    color: #3c3f58;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: 900;
+    text-align: center;
+    margin: 10px 0 25px 0;
+}
+
+.completed_container .completed_content {
+    background-color: rgb(240, 240, 240);
+    display: inline-block;
+    text-align: center;
+    margin: 15px;
+    max-height: 450px;
+    min-width: 420px;
+    max-width: 420px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.completed_container .completed_content .titleComplete,
+.completed_container .completed_content .namechild,
+.completed_container .completed_content .prize {
+    margin: 5px 0;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.completed_container .completed_content a {
+    background-color: #c1a82b;
+    color: rgb(240, 240, 240);
+    padding: 14px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px 5px;
+    font-family: Arial;
+}
+
+.completed_container .completed_content a:hover {
+    background-color: #b0981b;
+}
+
+.completed_container .completed_content .accept {
+    background-color: #03a167;
+    color: rgb(240, 240, 240);
+    padding: 12px 28px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 5px;
+    font-weight: bold;
+}
+
+.completed_container .completed_content .accept:hover {
+    background-color: rgb(47, 132, 52);
+}
+
+.completed_container .completed_content img {
+    max-height: 200px;
+    border: 2px solid #3c3f58;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgb(0, 0, 0, 0.5);
+}

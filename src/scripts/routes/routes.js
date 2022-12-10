@@ -5,6 +5,7 @@ import signup from '../views/pages/signup';
 import forgot_password from '../views/pages/forgot_password';
 import dashboard from '../views/pages/dashboard';
 import taskcompleted from '../views/pages/taskcompleted';
+import account from '../views/pages/account';
 
 const routes = {
     '/': Halamanlogin, // default page
@@ -14,6 +15,7 @@ const routes = {
     '/forgot_password': forgot_password,
     '/dashboard': dashboard,
     '/taskcompleted': taskcompleted,
+    '/account': account,
 };
 
 export default routes;

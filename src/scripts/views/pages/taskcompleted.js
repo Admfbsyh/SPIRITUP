@@ -1,13 +1,14 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 import '../component/headerNavDashboard';
 import { initializeApp } from 'firebase/app';
 import Swal from 'sweetalert2';
 import {
-    getFirestore, onSnapshot, where, query, collection, addDoc, deleteDoc, doc,
+    getFirestore, onSnapshot, where, query, collection, deleteDoc, doc,
 } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import {
-    getStorage, uploadBytesResumable, ref, getDownloadURL,
+    getStorage, ref, deleteObject,
 } from 'firebase/storage';
 import firebaseConfig from '../../data/config';
 
@@ -25,17 +26,18 @@ const taskcompleted = {
                 <!-- sidebar menu kiri -->
                 <aside class="sidebar">
                 <nav class="menu">
-                    <a href="#" class="email_user">
+                    <a href="?#/account" class="email_user">
                     <span class="email" id="email"></span>
                     </a>
                     <a href="?#/dashboard" class="menu-item">Tugas</a>
                     <a href="?#/taskcompleted" class="menu-item is-active">Terselesaikan</a>
-                    <a href="#" class="menu-item">Akun</a>
+                    <a href="?#/account" class="menu-item">Akun</a>
                     <a id="log-out" class="menu-item"><span>Keluar</span></a>
                 </nav>
                 </aside>
             <main class="content">
-                <ul id="listcompleted" ></ul>
+                <h1 class="foto_bukti">FOTO BUKTI</h1>
+                <div id="listcompleted" class="completed_container"></div>
             </main>
         </div>
        
@@ -47,43 +49,59 @@ const taskcompleted = {
         const db = getFirestore(app);
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
-            const menu_toggle = document.querySelector(".menu-toggle");
-            const sidebar = document.querySelector(".sidebar");
-
-            menu_toggle.addEventListener("click", () => {
-            menu_toggle.classList.toggle("is-active");
-            sidebar.classList.toggle("is-active");
-            });
-            
             if (user) {
+                document.getElementById('email').innerHTML = `Hello, ${user.email} `;
+                const menuToggle = document.querySelector('.menu-toggle');
+                const sidebar = document.querySelector('.sidebar');
+
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('is-active');
+                    sidebar.classList.toggle('is-active');
+                });
+
                 const { uid } = user;
                 const taskCompletedContainer = document.getElementById('listcompleted');
                 const renderTaskComplete = (display) => {
-                    const listcom = document.createElement('li');
-                    listcom.className = 'task_complete_li';
+                    const listcom = document.createElement('div');
+                    listcom.className = 'completed_content';
                     listcom.setAttribute('id', display.id);
-                    const label = document.createElement('label');
                     const divTitle = document.createElement('div');
                     divTitle.className = 'titleComplete';
-                    divTitle.setAttribute('id', `title${display.id}`);
-                    divTitle.textContent = display.data().judulTask;
+                    divTitle.setAttribute('id', display.data().judulTask);
+                    divTitle.textContent = `anak anda sudah menyelesaikan tugas ${display.data().judulTask}`;
                     const divname = document.createElement('div');
                     divname.className = 'namechild';
+                    divname.setAttribute('id', display.data().nama);
                     divname.textContent = display.data().nama;
                     const prize = document.createElement('div');
                     prize.className = 'prize';
-                    prize.textContent = display.data().prize;
+                    prize.textContent = `dengan begitu beri ${display.data().prize} sesuai janji anda kepada`;
                     const divDesc = document.createElement('img');
                     divDesc.setAttribute('src', display.data().Url);
                     const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'delete';
-                    deleteBtn.innerText = 'delete';
-                    label.append(divTitle, prize, divname, divDesc);
-                    listcom.append(label, deleteBtn);
+                    deleteBtn.className = 'accept';
+                    deleteBtn.innerText = 'Accept';
+                    const view_photo = document.createElement('a');
+                    view_photo.setAttribute('target', '_blank');
+                    view_photo.href = display.data().Url;
+                    view_photo.innerText = 'View Photo';
+                    const br = document.createElement('br');
+                    listcom.append(divDesc, divTitle, prize, divname, br, view_photo, deleteBtn);
 
                     deleteBtn.addEventListener('click', (e) => {
-                        const id = e.target.parentElement.getAttribute('id');
-                        deleteDoc(doc(db, 'bukti', id));
+                        const judulTaskId = document.getElementById(display.id).children;
+                        const idTask = e.target.parentElement.getAttribute('id');
+                        deleteDoc(doc(db, 'bukti', idTask));
+                        const storage = getStorage();
+
+                        const desertRef = ref(storage, `Images/${judulTaskId[3].id}${judulTaskId[1].id}.png`);
+
+                        // Delete the file
+                        deleteObject(desertRef).then(() => {
+                            // File deleted successfully
+                        }).catch((error) => {
+                            // Uh-oh, an error occurred!
+                        });
                     });
                     taskCompletedContainer.append(listcom);
                 };
@@ -105,6 +123,14 @@ const taskcompleted = {
             } else {
                 location.replace('/');
             }
+        });
+        const logout = document.getElementById('log-out');
+        logout.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                location.replace('/');
+            }).catch((error) => {
+                console.log(error);
+            });
         });
     },
 };

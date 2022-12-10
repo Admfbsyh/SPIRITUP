@@ -23,16 +23,13 @@ const account = {
           <!-- sidebar menu kiri -->
           <aside class="sidebar">
             <nav class="menu">
-              <a href="#" class="email_user">
-                <img src="../assets/useer.jpg" id="photo" class="user" />
-                <input type="file" id="file" />
-                <label for="file" id="uploadBtn">Choose Photo</label>
+              <a href="?#/account" class="email_user">
                 <span class="email" id="email"></span>
               </a>
-              <a href="?#/dashboard" class="menu-item is-active">Task</a>
-              <a href="completed.html" class="menu-item">Completed</a>
-              <a href="#" class="menu-item">Account</a>
-              <a id="log-out" class="menu-item"><span>Log-out</span></a>
+              <a href="?#/dashboard" class="menu-item">Tugas</a>
+              <a href="?#/taskcompleted" class="menu-item">Terselesaikan</a>
+              <a href="?#/account" class="menu-item is-active">Akun</a>
+              <a id="log-out" class="menu-item"><span>Keluar</span></a>
             </nav>
           </aside>
           <div class="content">
@@ -92,54 +89,40 @@ const account = {
         const db = getFirestore(app);
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
-            // Add Hamburger SIdebar Menu
+            const { uid } = user;
+            document.getElementById('email').innerHTML = `Hello, ${user.email} `;
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
 
-            const menu_toggle = document.querySelector(".menu-toggle");
-            const sidebar = document.querySelector(".sidebar");
-
-            menu_toggle.addEventListener("click", () => {
-            menu_toggle.classList.toggle("is-active");
-            sidebar.classList.toggle("is-active");
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('is-active');
+                sidebar.classList.toggle('is-active');
             });
 
-            // Add Choosed File User Profile
+            file.addEventListener('change', () => {
+                const choosedFile = this.files[0];
 
-            const imgDiv = document.querySelector(".avatar_user");
-            const img = document.querySelector("#photo");
-            const file = document.querySelector("#file");
-            const uploadBtn = document.querySelector("#UploadBtn");
+                if (choosedFile) {
+                    const reader = new FileReader();
 
-            imgDiv.addEventListener("mouseenter", function () {
-            uploadBtn.style.display = "block";
+                    reader.addEventListener('load', () => {
+                        img.setAttribute('src', reader.result);
+                    });
+
+                    reader.readAsDataURL(choosedFile);
+                }
             });
 
-            imgDiv.addEventListener("mouseleave", function () {
-            uploadBtn.style.display = "none";
-            });
-
-            file.addEventListener("change", function () {
-            const choosedFile = this.files[0];
-
-            if (choosedFile) {
-            const reader = new FileReader();
-
-            reader.addEventListener("load", function () {
-                img.setAttribute("src", reader.result);
-            });
-
-            reader.readAsDataURL(choosedFile);
-            }
-        });
-
-        const logout = document.getElementById('log-out');
-        logout.addEventListener('click', () => {
-            signOut(auth).then(() => {
-                location.replace('/');
-            }).catch((error) => {
-                console.log(error);
+            const logout = document.getElementById('log-out');
+            logout.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    location.replace('/');
+                }).catch((error) => {
+                    console.log(error);
+                });
             });
         });
-    },},
+    },
 };
 
 export default account;

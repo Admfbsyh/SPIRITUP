@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable max-len */
 /* eslint-disable no-alert */
@@ -28,17 +29,17 @@ const dashboard = {
           <!-- sidebar menu kiri -->
           <aside class="sidebar">
             <nav class="menu">
-              <a href="#" class="email_user">
+              <a href="?#/account" class="email_user">
                 <span class="email" id="email"></span>
               </a>
               <a href="?#/dashboard" class="menu-item is-active">Tugas</a>
               <a href="?#/taskcompleted" class="menu-item">Terselesaikan</a>
-              <a href="#" class="menu-item">Akun</a>
+              <a href="?#/account" class="menu-item">Akun</a>
               <a id="log-out" class="menu-item"><span>Keluar</span></a>
             </nav>
           </aside>
         <main class="content">
-
+          <h1 class="title_form">INPUT TUGAS</h1>
           <div class="container_form">
             <form id="inputTask">
               <div class="row">
@@ -136,19 +137,6 @@ const dashboard = {
                 sidebar.classList.toggle('is-active');
             });
 
-            // Add Choosed File User Profile
-
-            const imgDiv = document.querySelector('.email_user');
-            const uploadBtn = document.querySelector('#uploadBtn');
-
-            imgDiv.addEventListener('mouseenter', () => {
-                uploadBtn.style.display = 'block';
-            });
-
-            imgDiv.addEventListener('mouseleave', () => {
-                uploadBtn.style.display = 'none';
-            });
-
             const imageInput = document.getElementById('imgInput');
             let files = [];
             let reader = new FileReader();
@@ -163,7 +151,7 @@ const dashboard = {
 
             if (user) {
                 const { uid } = user;
-                document.getElementById('email').innerHTML = `Hello, ${user.email}`;
+                document.getElementById('email').innerHTML = `Hello, ${user.email} `;
                 const taskImportant = document.querySelector('#completeCreatetaskList');
                 const taskReguler = document.querySelector('#incompleteCreatetaskfList');
                 const uploadImg = document.querySelector('#upload');
@@ -197,7 +185,6 @@ const dashboard = {
                     doneBtn.className = 'done';
                     doneBtn.innerText = 'Done';
                     const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'delete';
                     deleteBtn.innerText = 'delete';
                     label.append(divTitle, divPrize, divDate, divDesc);
                     li.append(label, br, doneBtn, deleteBtn);
@@ -216,7 +203,7 @@ const dashboard = {
                             const judulId = document.getElementById(`title${display.id}`).innerHTML;
                             const prizeId = document.getElementById(`prize${display.id}`).innerHTML;
                             const imgName = document.getElementById('inputName').value;
-                            const imgRef = ref(storage, `Images/${imgName}${judulId}`);
+                            const imgRef = ref(storage, `Images/${imgName}${judulId}.png`);
                             const uploadImage = uploadBytesResumable(imgRef, files[0]);
                             uploadImage.on(
                                 'state_changed',
