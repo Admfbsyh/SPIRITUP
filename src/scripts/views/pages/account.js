@@ -3,11 +3,12 @@
 /* eslint-disable no-unused-vars */
 import '../component/headerNavDashboard';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import {
-    getDatabase, child, ref, get,
-} from 'firebase/database';
+    getAuth, onAuthStateChanged, signOut, updateProfile,
+} from 'firebase/auth';
+import {
+    getStorage, uploadBytesResumable, ref, getDownloadURL,
+} from 'firebase/storage';
 import firebaseConfig from '../../data/config';
 
 const account = {
@@ -25,7 +26,7 @@ const account = {
           <aside class="sidebar">
             <nav class="menu">
               <a href="?#/account" class="email_user">
-                <span class="email" id="email"></span>
+                <span class="email" id="nama"></span>
               </a>
               <a href="?#/dashboard" class="menu-item">Tugas</a>
               <a href="?#/taskcompleted" class="menu-item">Terselesaikan</a>
@@ -37,21 +38,24 @@ const account = {
         <div class="profile_edit">
           <h1>Edit Account</h1>
           <div class="avatar_user">
-            <img src="./Asset/img/noprofil.jpg" id="photo" />
-            <input type="file" id="file" />
-            <label for="file" id="UploadBtn">Upload Image</label>
-            <span class="avatar"></span>
+              <br>
+            <img class="img_area" id="myImg">
+            <div class="mb-3">
+              <input class="form-control form-control-sm select_image" id="imgInput" type="file" accept="image/jpg, image/png" required />
+            </div>
+            <button  id="UploadBtn">Upload Image</button>
           </div>
+        
           <div class="menu_edit">
             <h2>Personal Information</h2>
+            <form id="userAccount">
             <h3>Name</h3>
-            <input type="text" placeholder="Masukkan Nama" />
-            <h3>Email</h3>
-            <input type="text" placeholder="Masukkan Email" />
-          </div>
-          <button class="btn save">Save</button>
-          <button class="btn cancel">Cancel</button>
+            <input type="text"  id="inputName" required /> </br> 
+            <button type="submit" class="btn save">Save</button>
+            <button class="btn cancel">Cancel</button>
+            </form>
         </div>
+        
         <div class="content">
           <div class="intruksi">
             <h2>Cara Kerja Penggunaan Aplikasi SPIRIT-UP</h2>
@@ -87,40 +91,58 @@ const account = {
     },
     async afterRender() {
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const dbRef = ref(getDatabase(app));
+        const storage = getStorage();
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
+            const imageInput = document.getElementById('imgInput');
+            let files = [];
+            let reader = new FileReader();
+            imageInput.addEventListener('change', (e) => {
+                files = e.target.files;
+                reader = new FileReader();
+                reader.addEventListener('load', () => {
+                    document.getElementById('myImg').src = reader.result;
+                });
+                reader.readAsDataURL(files[0]);
+            });
+            document.getElementById('myImg').src = user.photoURL;
             const { uid } = user;
-            document.getElementById('email').innerHTML = `Hello, keluarga <br>${user.displayName}`;
+            document.getElementById('nama').innerHTML = `Hello, keluarga <br>${user.displayName}`;
             const menuToggle = document.querySelector('.menu-toggle');
             const sidebar = document.querySelector('.sidebar');
-            get(child(dbRef, `users/${uid}`)).then((snapshot) => {
-                if (snapshot.exists()) {
-                    console.log(snapshot.val());
-                } else {
-                    console.log('No data available');
-                }
-            }).catch((error) => {
-                console.error(error);
+            const nama = document.querySelector('#inputName').value;
+            console.log(nama);
+            const editUser = document.getElementById('userAccount');
+            editUser.addEventListener('submit', (event) => {
+                event.preventDefault();
+                console.log(nama);
+                updateProfile(auth.currentUser, { displayName: nama });
             });
             menuToggle.addEventListener('click', () => {
                 menuToggle.classList.toggle('is-active');
                 sidebar.classList.toggle('is-active');
             });
 
-            file.addEventListener('change', () => {
-                const choosedFile = this.files[0];
-
-                if (choosedFile) {
-                    const reader = new FileReader();
-
-                    reader.addEventListener('load', () => {
-                        img.setAttribute('src', reader.result);
-                    });
-
-                    reader.readAsDataURL(choosedFile);
-                }
+            const uploadImg = document.getElementById('UploadBtn');
+            uploadImg.addEventListener('click', (event) => {
+                event.preventDefault();
+                const imgRef = ref(storage, `Images/profil${uid}`);
+                const uploadImage = uploadBytesResumable(imgRef, files[0]);
+                let imgUrl = '';
+                uploadImage.on(
+                    'state_changed',
+                    (snapshot) => {
+                    },
+                    (error) => {
+                        console.log(error);
+                    },
+                    () => {
+                        getDownloadURL(uploadImage.snapshot.ref).then((downloadURL) => {
+                            imgUrl = downloadURL;
+                            updateProfile(auth.currentUser, { photoURL: imgUrl });
+                        });
+                    },
+                );
             });
 
             const logout = document.getElementById('log-out');

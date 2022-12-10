@@ -76,8 +76,9 @@ const taskcompleted = {
                     const prize = document.createElement('div');
                     prize.className = 'prize';
                     prize.textContent = `dengan begitu beri ${display.data().prize} sesuai janji anda kepada`;
-                    const divDesc = document.createElement('img');
-                    divDesc.setAttribute('src', display.data().Url);
+                    const divImg = document.createElement('img');
+                    divImg.setAttribute('src', display.data().Url);
+                    divImg.setAttribute('alt', `kegiatan ${display.data().judulTask}`);
                     const deleteBtn = document.createElement('button');
                     deleteBtn.className = 'accept';
                     deleteBtn.innerText = 'Accept';
@@ -86,7 +87,7 @@ const taskcompleted = {
                     view_photo.href = display.data().Url;
                     view_photo.innerText = 'View Photo';
                     const br = document.createElement('br');
-                    listcom.append(divDesc, divTitle, prize, divname, br, view_photo, deleteBtn);
+                    listcom.append(divImg, divTitle, prize, divname, br, view_photo, deleteBtn);
 
                     deleteBtn.addEventListener('click', (e) => {
                         Swal.fire({

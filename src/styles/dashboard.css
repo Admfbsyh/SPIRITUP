@@ -449,6 +449,7 @@ p {
   background: #282a3a;
   margin-bottom: 10px;
   border-radius: 12px;
+  background-size: cover;
 }
 
 .img_area img {
@@ -747,8 +748,8 @@ li > .delete:hover {
 
 .profile_edit .avatar_user img {
   text-align: center;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 

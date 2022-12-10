@@ -263,10 +263,6 @@ body {
   overflow: auto;
 }
 
-#mainContent{
-  width: 100%;
-  margin-top: 90px;
-}
 
 .login_box h1{
   text-align: center;
