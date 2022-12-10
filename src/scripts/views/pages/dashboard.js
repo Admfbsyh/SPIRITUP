@@ -85,7 +85,7 @@ const dashboard = {
 
               <div class="row">
                 <button id="taskSubmit" type="submit">
-                  Masukkan Task ke rak <span>Regular Task</span>
+                  Masukkan Task ke rak
                 </button>
               </div>
             </form>
@@ -235,7 +235,6 @@ const dashboard = {
                                 () => {
                                     getDownloadURL(uploadImage.snapshot.ref).then((downloadURL) => {
                                         imgUrl = downloadURL;
-                                        console.log(imgUrl);
 
                                         const dataBukti = collection(db, 'bukti');
                                         addDoc(dataBukti, {
@@ -247,8 +246,8 @@ const dashboard = {
                                         })
                                             .then(() => {
                                                 Swal.fire({
-                                                    title: 'Task added success',
-                                                    text: 'tugas berhasil ditambahkan',
+                                                    title: 'selamat tugas berhasil dikerjakan',
+                                                    text: 'beritahu orangtuamu untuk melihat menu terselesaikan',
                                                     icon: 'success',
                                                     showCancelButton: false,
                                                     confirmButtonColor: '#3085d6',

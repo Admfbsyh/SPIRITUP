@@ -84,6 +84,7 @@ body {
   max-width: 250px;
   padding: 2rem 1rem;
   background-color: #fca311;
+  z-index: 8;
 }
 
 .sidebar .menu .email_user {
@@ -160,6 +161,7 @@ body {
   box-sizing: border-box;
   background: #14213d;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .sidebar .menu .menu-item span {

@@ -62,26 +62,20 @@ const account = {
           <div class="intruksi">
           <ul>
             <li>
-              User diwajibkan untuk Registrasi di awal halaman guna mengakses
-              izin menggunakan aplikasi, dan login setelah melakukan registrasi
+              pada menu tugas terdapat form untuk membuat tugas baru. tugas terdapat 2 kategori 
+              reguler dan penting dapat diatur dengan checkbox. pada list 2 kategori terdapat button done
+              dan delete fungsi dari button done yaitu untuk anak ketika selesai mengerjakan tugas mengupload bukti
+              tugasnya 
             </li>
             <li>
-              Menu "Task" Digunakan user untuk membuat sebuah task/kegiatan
-              untuk dikerjakan kemudian sesuai dengan data yang dimasukkan,
-              (Data terdiri dari : Judul Kegiatan, Jadwal Kegiatan, serta
-              Deskripsi Kegiatan), kemudian user bisa memilih kategori kegiatan
-              termasuk kegiatan biasa/Reguler Task atau Kegiatan
-              Penting/Important Task
-            </li>
-            <li>
-              Menu Completed digunakan untuk memberitahu informasi detail
+              Menu teselesaikan digunakan untuk memberitahu informasi detail
               mengenai history kegiatan yang telah dikerjaan beserta nilai point
-              reward tiap-tiap kegiatan yang telah diselesaikan
+              reward tiap-tiap kegiatan yang telah diselesaikan oleh anak
             </li>
             <li>
               Menu Account digunakan sebagai halaman Edit Profile, pengguna
               bisa mengatur Foto Profile user pengguna dalam aplikasi SPIRIT-UP,
-              pengguna bisa mengatur Nama dan email tertaut dalam aplikasi
+              pengguna bisa mengatur Nama dalam aplikasi
               SPIRIT-UP
             </li>
             </ul>

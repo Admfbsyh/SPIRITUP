@@ -21,11 +21,3 @@ window.addEventListener('load', () => {
     app.renderPage();
     swRegister();
 });
-
-// const menu = document.getElementById('menu-label');
-// const sidebar = document.getElementsByClassName('sidebar-dash')[0];
-
-// menu.addEventListener('click', () => {
-//     sidebar.classList.toggle('hide');
-//     console.log('ok');
-// });
