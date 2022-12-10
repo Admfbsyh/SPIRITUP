@@ -35,7 +35,7 @@ const taskcompleted = {
                     <a id="log-out" class="menu-item"><span>Keluar</span></a>
                 </nav>
                 </aside>
-            <main class="content">
+            <main class="content" id="mainContent">
                 <h1 class="foto_bukti">FOTO BUKTI</h1>
                 <div id="listcompleted" class="completed_container"></div>
             </main>
@@ -50,7 +50,7 @@ const taskcompleted = {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                document.getElementById('email').innerHTML = `Hello, ${user.email} `;
+                document.getElementById('email').innerHTML = `Hello, keluarga <br>${user.displayName}`;
                 const menuToggle = document.querySelector('.menu-toggle');
                 const sidebar = document.querySelector('.sidebar');
 
@@ -89,18 +89,33 @@ const taskcompleted = {
                     listcom.append(divDesc, divTitle, prize, divname, br, view_photo, deleteBtn);
 
                     deleteBtn.addEventListener('click', (e) => {
-                        const judulTaskId = document.getElementById(display.id).children;
-                        const idTask = e.target.parentElement.getAttribute('id');
-                        deleteDoc(doc(db, 'bukti', idTask));
-                        const storage = getStorage();
+                        Swal.fire({
+                            title: 'kamu yakin?',
+                            text: 'kamu yakin memberikan hadiahnya sekarang, tugas terselesaikan ini akan hilang',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, Accept it!',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire(
+                                    'Accepted!',
+                                    'tepati janji anda beri hadiahnya',
+                                    'success',
+                                );
+                                const judulTaskId = document.getElementById(display.id).children;
+                                const idTask = e.target.parentElement.getAttribute('id');
+                                deleteDoc(doc(db, 'bukti', idTask));
+                                const storage = getStorage();
+                                const desertRef = ref(storage, `Images/${judulTaskId[3].id}${judulTaskId[1].id}.png`);
 
-                        const desertRef = ref(storage, `Images/${judulTaskId[3].id}${judulTaskId[1].id}.png`);
-
-                        // Delete the file
-                        deleteObject(desertRef).then(() => {
-                            // File deleted successfully
-                        }).catch((error) => {
-                            // Uh-oh, an error occurred!
+                                deleteObject(desertRef).then(() => {
+                                    // File deleted successfully
+                                }).catch((error) => {
+                                    // Uh-oh, an error occurred!
+                                });
+                            }
                         });
                     });
                     taskCompletedContainer.append(listcom);
@@ -115,7 +130,6 @@ const taskcompleted = {
                             renderTaskComplete(change.doc);
                         } else if (change.type === 'removed') {
                             const deleteTaskComplete = taskCompletedContainer.querySelector(`[id=${change.doc.id}]`);
-
                             taskCompletedContainer.removeChild(deleteTaskComplete);
                         }
                     });

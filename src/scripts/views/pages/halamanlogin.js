@@ -8,7 +8,9 @@ const halamanlogin = {
         <main tabindex="0" id="mainContent">
         <div id="halamanlogin"></>
         </main>
-        <footer></footer>
+        <footer>
+        <p tabindex="0"> Tim Capstone C22-129 &copy;2022 <span>Spirit Up</span></p>
+        </footer>
     `;
     },
 

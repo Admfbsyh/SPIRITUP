@@ -31,6 +31,9 @@ const login = {
             </a>
         </div>
         </main>
+        <footer>
+        <p tabindex="0"> Tim Capstone C22-129 &copy;2022 <span>Spirit Up</span></p>
+        </footer>
     `;
     },
 

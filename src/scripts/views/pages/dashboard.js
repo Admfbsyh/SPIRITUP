@@ -38,7 +38,7 @@ const dashboard = {
               <a id="log-out" class="menu-item"><span>Keluar</span></a>
             </nav>
           </aside>
-        <main class="content">
+        <main class="content" id="mainContent">
           <h1 class="title_form">INPUT TUGAS</h1>
           <div class="container_form">
             <form id="inputTask">
@@ -151,7 +151,7 @@ const dashboard = {
 
             if (user) {
                 const { uid } = user;
-                document.getElementById('email').innerHTML = `Hello, ${user.email} `;
+                document.getElementById('email').innerHTML = `Hello, keluarga <br>${user.displayName}`;
                 const taskImportant = document.querySelector('#completeCreatetaskList');
                 const taskReguler = document.querySelector('#incompleteCreatetaskfList');
                 const uploadImg = document.querySelector('#upload');
@@ -190,8 +190,25 @@ const dashboard = {
                     li.append(label, br, doneBtn, deleteBtn);
 
                     deleteBtn.addEventListener('click', (e) => {
-                        const id = e.target.parentElement.getAttribute('id');
-                        deleteDoc(doc(db, 'task', id));
+                        Swal.fire({
+                            title: 'apakah kamu yakin?',
+                            text: 'tugas ini akan hilang selamanya!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'tugas berhasil dihapus',
+                                    'success',
+                                );
+                                const id = e.target.parentElement.getAttribute('id');
+                                deleteDoc(doc(db, 'task', id));
+                            }
+                        });
                     });
 
                     doneBtn.addEventListener('click', (e) => {

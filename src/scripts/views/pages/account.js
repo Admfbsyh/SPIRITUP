@@ -3,10 +3,11 @@
 /* eslint-disable no-unused-vars */
 import '../component/headerNavDashboard';
 import { initializeApp } from 'firebase/app';
-import {
-    getFirestore, onSnapshot, where, query, collection, addDoc, deleteDoc, doc,
-} from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import {
+    getDatabase, child, ref, get,
+} from 'firebase/database';
 import firebaseConfig from '../../data/config';
 
 const account = {
@@ -87,13 +88,22 @@ const account = {
     async afterRender() {
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const dbRef = ref(getDatabase(app));
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             const { uid } = user;
-            document.getElementById('email').innerHTML = `Hello, ${user.email} `;
+            document.getElementById('email').innerHTML = `Hello, keluarga <br>${user.displayName}`;
             const menuToggle = document.querySelector('.menu-toggle');
             const sidebar = document.querySelector('.sidebar');
-
+            get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val());
+                } else {
+                    console.log('No data available');
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
             menuToggle.addEventListener('click', () => {
                 menuToggle.classList.toggle('is-active');
                 sidebar.classList.toggle('is-active');

@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {
     getDatabase, set, ref,
 } from 'firebase/database';
@@ -16,28 +16,34 @@ const signup = {
         <div class="signup_header">SPIRITUP</div>
         <div class="signup_box">
         <h1>Sign Up</h1>
+        <form id="signup_form">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Nama Lengkap" required><br>
+        <input type="text" id="name"  placeholder="Nama Lengkap" required /><br>
         <label for="signupEmail">E-mail</label>
-        <input type="text" id="signupEmail" name="signupEmail" placeholder="E-mail" required><br>
+        <input type="text" id="signupEmail"  placeholder="E-mail" required /><br>
         <label for="signupPassword">Password</label>
-        <input type="password" id="signupPassword" name="signupPassword" placeholder="Password" required><br>
+        <input type="password" id="signupPassword"  placeholder="Password" required /><br>
         <label for="signupPasswordConfirm">Confirm Password</label>
-        <input type="password" id="signupPasswordConfirm" name="signupPasswordConfirm" placeholder="Confirm Your Password" required>
+        <input type="password" id="signupPasswordConfirm"  placeholder="Confirm Your Password" required>
         <input type="checkbox" id="toogle_password" class="toogle_password">
         <label for="toogle_password"> Show Password</label>
-        <input type="submit" id="signup" name="signup" value="Sign Up">
+        <input type="submit" id="signup"  value="Sign Up">
+        </form>
         </div>
         </main>
+        <footer>
+        <p tabindex="0"> Tim Capstone C22-129 &copy;2022 <span>Spirit Up</span></p>
+        </footer>
     `;
     },
     async afterRender() {
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
-        const signupButton = document.getElementById('signup');
+        const signupButton = document.getElementById('signup_form');
 
-        signupButton.addEventListener('click', () => {
+        signupButton.addEventListener('submit', () => {
+            event.preventDefault();
             const name = document.getElementById('name').value;
             const emailSignup = document.getElementById('signupEmail').value;
             const passwordSignup = document.getElementById('signupPassword').value;
@@ -60,6 +66,7 @@ const signup = {
                             email: emailSignup,
                         })
                             .then(() => {
+                                updateProfile(auth.currentUser, { displayName: name });
                                 Swal.fire({
                                     title: 'Sign Up Success',
                                     text: 'Akun berhasil dibuat',

@@ -501,8 +501,15 @@ body {
 }
 
 footer{
-  margin-top:100px;
+  margin-top:80px;
   width: 100%;
-  height: 20%;
+  height: 5%;
+  padding: 2px;
   background-color: #FCA311;
+  text-align: center;
+}
+footer p {
+  margin-top: 10px;
+  font-size: 15px;
+ color:#E5E5E5;
 }
