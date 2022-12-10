@@ -18,6 +18,10 @@ body {
   color: #424242;
 }
 
+.halaman_login, .halaman_signup {
+  margin-top: 100px;
+}
+
 .skip-link {
   position: absolute;
   top: -40px;
@@ -133,6 +137,7 @@ body {
 
 .hero{
   text-align: center;
+  margin-top: 100px;
 }
 .hero img{
   margin-top:50px;

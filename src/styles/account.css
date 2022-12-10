@@ -1,0 +1,137 @@
+.profile_edit {
+    text-align: center;
+}
+
+.profile_edit h1 {
+    color: #3c3f58;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: 900;
+    text-align: center;
+    margin: 50px 0 25px 0;
+}
+
+.profile_edit .account_container {
+    margin: 0 auto;
+    background-color: rgb(230, 230, 230);
+    max-width: 80%;
+    margin-top: 120px;
+    padding-top: -100px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.profile_edit .account_container .avatar_user .img_area {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    bottom: 100px;
+    box-shadow: 0 0 5px 10px rgba(255, 255, 255);
+    object-fit:  scale-down;
+}
+
+.select_image_avatar {
+    position: relative;
+    bottom: 70px;
+    width: 40%;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+
+.upload_button{
+    position: relative;
+    bottom: 70px;
+    background-color: #c1a82b;
+    color: rgb(240, 240, 240);
+    padding: 14px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px 5px;
+    font-family: Arial;
+}
+
+.upload_button:hover {
+    background-color: #b0981b;
+}
+
+.menu_edit{
+    position: relative;
+    bottom: 30px;
+}
+
+.menu_edit h3{
+    color: #3c3f58;
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+.menu_edit .form_nama{
+    position: relative;
+    max-width: 65%;
+    right: 5%;
+}
+
+.menu_edit .save_nama{
+    position: absolute;
+    background-color: #03a167;
+    color: rgb(240, 240, 240);
+    padding: 12px 28px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 5px;
+    font-weight: bold;
+    border-radius: 5px;
+
+    bottom: 0;
+    right: 12%;
+}
+
+.menu_edit .save_nama:hover {
+    background-color: rgb(47, 132, 52);
+}
+
+
+
+
+
+
+
+.intruksi_container {
+    margin: 0 auto;
+    background-color: rgb(230, 230, 230);
+    max-width: 80%;
+    margin-top: 50px;
+    padding-top: -100px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    padding: 50px 0 20px 0;
+    margin-bottom: 50px;
+}
+
+.intruksi_container h2 {
+    position: relative;
+    color: #3c3f58;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+    bottom: 20px;
+}
+
+.intruksi_container .intruksi ul li {
+    text-align: left;
+    list-style-type: lower-number;
+    margin: 10px 60px 10px 40px;
+    line-height: 1.6;
+    font-family: Arial;
+    font-size: 15px;
+    text-align: justify;
+}

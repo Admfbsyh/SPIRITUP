@@ -114,7 +114,7 @@ const taskcompleted = {
                                 deleteObject(desertRef).then(() => {
                                     // File deleted successfully
                                 }).catch((error) => {
-                                    // Uh-oh, an error occurred!
+                                    console.log(error);
                                 });
                             }
                         });
@@ -125,7 +125,6 @@ const taskcompleted = {
                 const datacompleted = query(collection(db, 'bukti'), where('user', '==', uid));
                 onSnapshot(datacompleted, (snapshot) => {
                     const changes = snapshot.docChanges();
-                    console.log(changes);
                     changes.forEach((change) => {
                         if (change.type === 'added') {
                             renderTaskComplete(change.doc);

@@ -10,7 +10,7 @@ const login = {
     async render() {
         return `
         <header-nav></header-nav>
-        <main tabindex="0" id="mainContent">
+        <main tabindex="0" id="mainContent" class="halaman_login">
         <div class="login_header">SPIRITUP</div>
         <div class="login_box">
             <h1>Login</h1>

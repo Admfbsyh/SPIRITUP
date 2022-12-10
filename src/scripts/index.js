@@ -3,6 +3,7 @@ import '../styles/style.css';
 import '../styles/responsive.css';
 import '../styles/task_completed.css';
 import '../styles/dashboard.css';
+import '../styles/account.css';
 import App from './views/app';
 import swRegister from './utils/sw-register';
 

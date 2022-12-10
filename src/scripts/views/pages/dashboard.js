@@ -310,7 +310,6 @@ const dashboard = {
                 const q = query(collection(db, 'task'), where('user', '==', uid));
                 onSnapshot(q, (snapshot) => {
                     const changes = snapshot.docChanges();
-                    console.log(changes);
                     changes.forEach((change) => {
                         if (change.type === 'added') {
                             renderTask(change.doc);

@@ -12,7 +12,7 @@ const signup = {
     async render() {
         return `
         <header-nav></header-nav>
-        <main tabindex="0" id="mainContent">
+        <main tabindex="0" id="mainContent" class="halaman_signup">
         <div class="signup_header">SPIRITUP</div>
         <div class="signup_box">
         <h1>Sign Up</h1>
