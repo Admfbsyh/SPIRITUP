@@ -29,9 +29,6 @@ const dashboard = {
           <aside class="sidebar">
             <nav class="menu">
               <a href="#" class="email_user">
-                <img src="../assets/useer.jpg" id="photo" class="user" />
-                <input type="file" id="file" />
-                <label for="file" id="uploadBtn">Choose Photo</label>
                 <span class="email" id="email"></span>
               </a>
               <a href="?#/dashboard" class="menu-item is-active">Tugas</a>
